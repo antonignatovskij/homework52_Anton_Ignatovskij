@@ -17,6 +17,7 @@ def create_task(request):
             'description': request.POST.get('description').strip(),
             'status': request.POST.get('status').strip(),
             'date': request.POST.get('date').strip(),
+            'detail_description': request.POST.get('detail_description'),
         }
         if new_task['date'] == '':
             new_task['date'] = None
@@ -27,6 +28,7 @@ def create_task(request):
                 description = new_task['description'],
                 status = new_task['status'],
                 date = new_task['date'],
+                detail_description = new_task['detail_description'],
             )
         else:
             varning = {'varning': flag}
