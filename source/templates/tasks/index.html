@@ -42,15 +42,6 @@
                                         </span>
                                     {% endif %}
                                 </p>
-                                {% if task.detail_description %}
-                                    <p class="text-muted mb-0">
-                                        {{ task.detail_description }}
-                                    </p>
-                                {% else %}
-                                    <p class="text-muted mb-0">
-                                        Нет описания
-                                    </p>
-                                {% endif %}
 
                                 {% if task.date %}
                                     <p class="text-muted mb-0">
@@ -67,7 +58,7 @@
                                         нет срока
                                     </p>
                                 {% endif %}
-
+                                <a href="/task/{{ task.id }}/" class="card-link mt-auto ms-auto">Подробнее</a>
                             </div>
                         </div>
                     </div>
