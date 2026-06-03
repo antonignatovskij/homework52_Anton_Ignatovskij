@@ -1,0 +1,29 @@
+[
+{
+    "model": "todo_app.todoitem",
+    "pk": 12,
+    "fields": {
+        "description": "Покормить кота",
+        "status": "in_progress",
+        "date": "2026-05-27"
+    }
+},
+{
+    "model": "todo_app.todoitem",
+    "pk": 13,
+    "fields": {
+        "description": "Забрать черешню с дачи",
+        "status": "new",
+        "date": "2026-06-12"
+    }
+},
+{
+    "model": "todo_app.todoitem",
+    "pk": 14,
+    "fields": {
+        "description": "сделать уборку",
+        "status": "done",
+        "date": null
+    }
+}
+]
