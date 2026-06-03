@@ -1,5 +1,5 @@
 from django.http import HttpResponseRedirect, HttpResponseNotFound
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 from todo_app.models import TodoItem
 from todo_app.new_task_validator import NewTaskValidator
@@ -33,7 +33,7 @@ def create_task(request):
         else:
             varning = {'varning': flag}
             return render(request, 'tasks/create_task.html', varning)
-        return HttpResponseRedirect('/')
+        return redirect('detail', pk=task.pk)
     return render(request, 'tasks/create_task.html')
 
 def task_detail(request, pk, *args, **kwargs):
