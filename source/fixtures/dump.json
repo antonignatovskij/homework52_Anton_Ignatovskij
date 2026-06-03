@@ -1,0 +1,42 @@
+[
+{
+    "model": "todo_app.todoitem",
+    "pk": 1,
+    "fields": {
+        "description": "asdadwasdad",
+        "status": "new",
+        "date": null,
+        "detail_description": null
+    }
+},
+{
+    "model": "todo_app.todoitem",
+    "pk": 2,
+    "fields": {
+        "description": "wraerraaer",
+        "status": "new",
+        "date": "2004-05-05",
+        "detail_description": null
+    }
+},
+{
+    "model": "todo_app.todoitem",
+    "pk": 3,
+    "fields": {
+        "description": "счм",
+        "status": "new",
+        "date": null,
+        "detail_description": "фыв"
+    }
+},
+{
+    "model": "todo_app.todoitem",
+    "pk": 4,
+    "fields": {
+        "description": "фывфвыфыввф",
+        "status": "new",
+        "date": null,
+        "detail_description": "фывфывывффывввввввввввввввввввввввввввввввввввввввввввфыв"
+    }
+}
+]

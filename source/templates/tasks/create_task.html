@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    <h3 class="mb-0">Добавить задачу</h3>
+                </div>
+
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label class="form-label">Описание</label>
+                            <input type="text" name="description" class="form-control" placeholder="Введите описание">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Подробнее</label>
+                            <textarea name="detail_description" rows="5" cols="33" class="form-control" placeholder="Подробнее о задаче"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Срок выполнения</label>
+                            <input type="text" name="date" class="form-control" placeholder="YYYY-MM-DD">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Статус</label>
+                            <select name="status" class="form-select">
+                                <option value="new">Новая</option>
+                                <option value="in_progress">В процессе</option>
+                                <option value="done">Завершена</option>
+                            </select>
+                        </div>
+
+                        {% if varning %}
+                            <div class="alert alert-danger">
+                                {% for v in varning %}
+                                    <div>{{ v }}</div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-warning">
+                                Сохранить
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="card-footer text-center">
+                    <a href="/" class="btn btn-outline-success">
+                        Назад
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock%}

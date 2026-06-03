@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block nav %}
+    <a class="nav-link" aria-current="page" href="{% url 'create' %}">Добавить задачу</a>
+{% endblock %}
+
+{% block content %}
+    <div class="text-center mb-5">
+        <div>
+            <h1 class="fw-bold">Все задачи</h1>
+        </div>
+
+    </div>
+    {% if tasks %}
+        <div class="row g-4">
+            {% for task in tasks %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+
+                            <h3 class="card-text h5 mb-3">
+                                {{ task.description }}
+                            </h3>
+
+                            <p>
+                                <span class="fw-semibold">Статус:</span>
+
+                                {% if task.status == "done" %}
+                                    <span class="badge bg-success">
+                                        {{ task.status }}
+                                    </span>
+                                {% else %}
+                                    <span class="badge bg-warning text-dark">
+                                        {{ task.status }}
+                                    </span>
+                                {% endif %}
+                            </p>
+
+                            {% if task.date %}
+                                <p class="text-muted mb-0">
+                                    <span class="fw-semibold">
+                                        Выполнить до:
+                                    </span>
+                                    {{ task.date }}
+                                </p>
+                            {% else %}
+                                <p class="text-muted mb-0">
+                                    <span class="fw-semibold">
+                                        Выполнить до:
+                                    </span>
+                                    нет срока
+                                </p>
+                            {% endif %}
+                            <a href="{% url 'detail' task.pk %}" class="card-link text-success mt-auto ms-auto">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    {% else %}
+        <div class="alert alert-info text-center">
+            Нет задач
+        </div>
+    {% endif %}
+{% endblock %}

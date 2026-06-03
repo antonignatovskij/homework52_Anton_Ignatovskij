@@ -1,5 +1,5 @@
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.http import HttpResponseRedirect, HttpResponseNotFound
+from django.shortcuts import render, get_object_or_404, redirect
 
 from todo_app.models import TodoItem
 from todo_app.new_task_validator import NewTaskValidator
@@ -9,7 +9,7 @@ from todo_app.new_task_validator import NewTaskValidator
 
 def tasklist(request):
     tasks = TodoItem.objects.all()
-    return render(request, 'index.html', {'tasks': tasks})
+    return render(request, 'tasks/index.html', {'tasks': tasks})
 
 def create_task(request):
     if request.method == 'POST':
@@ -17,6 +17,7 @@ def create_task(request):
             'description': request.POST.get('description').strip(),
             'status': request.POST.get('status').strip(),
             'date': request.POST.get('date').strip(),
+            'detail_description': request.POST.get('detail_description'),
         }
         if new_task['date'] == '':
             new_task['date'] = None
@@ -27,9 +28,16 @@ def create_task(request):
                 description = new_task['description'],
                 status = new_task['status'],
                 date = new_task['date'],
+                detail_description = new_task['detail_description'],
             )
         else:
             varning = {'varning': flag}
-            return render(request, 'create_task.html', varning)
-        return HttpResponseRedirect('/')
-    return render(request, 'create_task.html')
+            return render(request, 'tasks/create_task.html', varning)
+        return redirect('detail', pk=task.pk)
+    return render(request, 'tasks/create_task.html')
+
+def task_detail(request, pk, *args, **kwargs):
+    task = get_object_or_404(TodoItem, pk=pk)
+    context = {'task': task}
+    return render(request, 'tasks/task_detail.html', context)
+
