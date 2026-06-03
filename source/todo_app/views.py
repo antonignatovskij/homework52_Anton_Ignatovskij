@@ -9,7 +9,7 @@ from todo_app.new_task_validator import NewTaskValidator
 
 def tasklist(request):
     tasks = TodoItem.objects.all()
-    return render(request, 'index.html', {'tasks': tasks})
+    return render(request, 'tasks/index.html', {'tasks': tasks})
 
 def create_task(request):
     if request.method == 'POST':
@@ -30,6 +30,6 @@ def create_task(request):
             )
         else:
             varning = {'varning': flag}
-            return render(request, 'create_task.html', varning)
+            return render(request, 'tasks/create_task.html', varning)
         return HttpResponseRedirect('/')
-    return render(request, 'create_task.html')
+    return render(request, 'tasks/create_task.html')
