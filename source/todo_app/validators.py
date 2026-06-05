@@ -1,6 +1,5 @@
 def validate_task(task):
     errors = {}
-    print(task.description, task.date, task.detail_description)
     if not task.description:
         errors['description'] = 'Поле описания не должно быть пустым.'
     elif len(task.description) > 50:

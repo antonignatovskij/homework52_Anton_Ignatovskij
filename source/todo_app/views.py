@@ -16,16 +16,13 @@ def tasklist(request):
 
 def create_task(request):
     if request.method == 'POST':
-        print(11)
         new_task = TodoItem(
             description = request.POST.get('description'),
             status = request.POST.get('status'),
             date = request.POST.get('date'),
             detail_description = request.POST.get('detail_description'),
         )
-        print(22)
         errors = validate_task(new_task)
-        print(errors)
         if errors:
             context = {'errors': errors, 'task': new_task}
             return render(request, 'tasks/create_task.html', context)
@@ -42,26 +39,40 @@ def task_detail(request, pk, *args, **kwargs):
 
 def update_task(request, pk, *args, **kwargs):
     todoitem = get_object_or_404(TodoItem, pk=pk)
+    if request.method == 'GET':
+        return render(request, 'tasks/update_task.html', {'task': todoitem})
     if request.method == 'POST':
-        new_task = {
-            'description': request.POST.get('description').strip(),
-            'status': request.POST.get('status').strip(),
-            'date': request.POST.get('date').strip(),
-            'detail_description': request.POST.get('detail_description'),
-        }
-        if new_task['date'] == '':
-            new_task['date'] = None
-        print(new_task)
-        flag = NewTaskValidator.validate_new_task(new_task)
-        if flag == True:
-            todoitem.description = new_task['description']
-            todoitem.status = new_task['status']
-            todoitem.date = new_task['date']
-            todoitem.detail_description = new_task['detail_description']
-            todoitem.save()
+        todoitem.description = request.POST.get('description')
+        todoitem.status = request.POST.get('status')
+        todoitem.date = request.POST.get('date')
+        todoitem.detail_description = request.POST.get('detail_description')
+        errors = validate_task(todoitem)
+        if errors:
+            context = {'errors': errors, 'task': todoitem}
+            return render(request, 'tasks/update_task.html', context)
         else:
-            varning = {'varning': flag}
-            return render(request, 'tasks/create_task.html', varning)
-        return redirect('detail', pk=todoitem.pk)
-    return render(request, 'tasks/update_task.html', {'task': todoitem})
+            todoitem.save()
+            return redirect('detail', pk=todoitem.pk)
+    # if request.method == 'POST':
+    #     new_task = {
+    #         'description': request.POST.get('description').strip(),
+    #         'status': request.POST.get('status').strip(),
+    #         'date': request.POST.get('date').strip(),
+    #         'detail_description': request.POST.get('detail_description'),
+    #     }
+    #     if new_task['date'] == '':
+    #         new_task['date'] = None
+    #     print(new_task)
+    #     flag = NewTaskValidator.validate_new_task(new_task)
+    #     if flag == True:
+    #         todoitem.description = new_task['description']
+    #         todoitem.status = new_task['status']
+    #         todoitem.date = new_task['date']
+    #         todoitem.detail_description = new_task['detail_description']
+    #         todoitem.save()
+    #     else:
+    #         varning = {'varning': flag}
+    #         return render(request, 'tasks/create_task.html', varning)
+    #     return redirect('detail', pk=todoitem.pk)
+    # return render(request, 'tasks/update_task.html', {'task': todoitem})
 

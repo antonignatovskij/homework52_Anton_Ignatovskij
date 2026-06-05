@@ -7,7 +7,7 @@
 
             <div class="card shadow">
                 <div class="card-header bg-success text-white">
-                    <h3 class="mb-0">Задача - {{ task.description }}</h3>
+                    <h3 class="mb-0">Добавить задачу</h3>
                 </div>
 
                 <div class="card-body">
@@ -16,17 +16,20 @@
 
                         <div class="mb-3">
                             <label class="form-label">Описание</label>
-                            <input type="text" name="description" class="form-control" value="{{ task.description }}">
+                            <p class="text-danger fs-6 mt-2">{{ errors.description }}</p>
+                            <input type="text" name="description" class="form-control {% if errors.description %}is-invalid{% endif %}" value="{{ task.description }}" placeholder="Введите описание">
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Подробнее</label>
-                            <textarea name="detail_description" rows="5" cols="33" class="form-control" >{{ task.detail_description }}</textarea>
+                            <p class="text-danger fs-6 mt-2">{{ errors.detail_description }}</p>
+                            <textarea name="detail_description" rows="5" cols="33" class="form-control {% if errors.detail_description %}is-invalid{% endif %}" placeholder="Подробнее о задаче">{{ task.detail_description }}</textarea>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Срок выполнения</label>
-                            <input type="text" name="date" class="form-control" value="{{ task.date }}">
+                            <p class="text-danger fs-6 mt-2">{{ errors.date }}</p>
+                            <input type="text" name="date" class="form-control {% if errors.date %}is-invalid{% endif %}" value="{{ task.date }}" placeholder="YYYY-MM-DD">
                         </div>
 
                         <div class="mb-3">
@@ -38,13 +41,6 @@
                             </select>
                         </div>
 
-                        {% if varning %}
-                            <div class="alert alert-danger">
-                                {% for v in varning %}
-                                    <div>{{ v }}</div>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
 
                         <div class="d-grid">
                             <button type="submit" class="btn btn-warning">
