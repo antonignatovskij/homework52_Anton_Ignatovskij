@@ -1,3 +1,5 @@
+from multiprocessing import context
+
 from django.http import HttpResponseRedirect, HttpResponseNotFound
 from django.shortcuts import render, get_object_or_404, redirect
 
@@ -25,7 +27,8 @@ def create_task(request):
         errors = validate_task(new_task)
         print(errors)
         if errors:
-            return render(request, 'tasks/create_task.html', {"errors":errors})
+            context = {'errors': errors, 'task': new_task}
+            return render(request, 'tasks/create_task.html', context)
         else:
             new_task.save()
             return redirect('detail', pk=new_task.pk)
