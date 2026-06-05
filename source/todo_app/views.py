@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from todo_app.models import TodoItem
 from todo_app.new_task_validator import NewTaskValidator
+from todo_app.validators import validate_task
 
 
 # Create your views here.
@@ -13,26 +14,21 @@ def tasklist(request):
 
 def create_task(request):
     if request.method == 'POST':
-        new_task = {
-            'description': request.POST.get('description').strip(),
-            'status': request.POST.get('status').strip(),
-            'date': request.POST.get('date').strip(),
-            'detail_description': request.POST.get('detail_description'),
-        }
-        if new_task['date'] == '':
-            new_task['date'] = None
-        flag = NewTaskValidator.validate_new_task(new_task)
-        if flag == True:
-            task = TodoItem.objects.create(
-                description = new_task['description'],
-                status = new_task['status'],
-                date = new_task['date'],
-                detail_description = new_task['detail_description'],
-            )
+        print(11)
+        new_task = TodoItem(
+            description = request.POST.get('description'),
+            status = request.POST.get('status'),
+            date = request.POST.get('date'),
+            detail_description = request.POST.get('detail_description'),
+        )
+        print(22)
+        errors = validate_task(new_task)
+        print(errors)
+        if errors:
+            return render(request, 'tasks/create_task.html', {"errors":errors})
         else:
-            varning = {'varning': flag}
-            return render(request, 'tasks/create_task.html', varning)
-        return redirect('detail', pk=task.pk)
+            new_task.save()
+            return redirect('detail', pk=new_task.pk)
     return render(request, 'tasks/create_task.html')
 
 def task_detail(request, pk, *args, **kwargs):
