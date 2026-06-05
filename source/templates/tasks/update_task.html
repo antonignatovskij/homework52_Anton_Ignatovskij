@@ -7,56 +7,23 @@
 
             <div class="card shadow">
                 <div class="card-header bg-success text-white">
-                    <h3 class="mb-0">Добавить задачу</h3>
+                    <h3 class="mb-0">задача: {{ task.description }}</h3>
                 </div>
 
                 <div class="card-body">
-                    <form method="post">
-                        {% csrf_token %}
-
-                        <div class="mb-3">
-                            <label class="form-label">Описание</label>
-                            <p class="text-danger fs-6 mt-2">{{ errors.description }}</p>
-                            <input type="text" name="description" class="form-control {% if errors.description %}is-invalid{% endif %}" value="{{ task.description }}" placeholder="Введите описание">
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Подробнее</label>
-                            <p class="text-danger fs-6 mt-2">{{ errors.detail_description }}</p>
-                            <textarea name="detail_description" rows="5" cols="33" class="form-control {% if errors.detail_description %}is-invalid{% endif %}" placeholder="Подробнее о задаче">{{ task.detail_description }}</textarea>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Срок выполнения</label>
-                            <p class="text-danger fs-6 mt-2">{{ errors.date }}</p>
-                            <input type="text" name="date" class="form-control {% if errors.date %}is-invalid{% endif %}" value="{{ task.date }}" placeholder="YYYY-MM-DD">
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Статус</label>
-                            <select name="status" class="form-select">
-                                <option value="new">Новая</option>
-                                <option value="in_progress">В процессе</option>
-                                <option value="done">Завершена</option>
-                            </select>
-                        </div>
-
-
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-warning">
-                                Сохранить
-                            </button>
-                        </div>
-                    </form>
+                    {% include 'partial/task_form.html' with action=action %}
                 </div>
 
                 <div class="card-footer text-center">
                     <a href="/" class="btn btn-outline-success">
                         Назад
                     </a>
+                    <button type="submit" form="task-form" class="btn btn-warning">
+                            Сохранить
+                    </button>
                 </div>
             </div>
 
         </div>
     </div>
-{% endblock%}
+{% endblock %}

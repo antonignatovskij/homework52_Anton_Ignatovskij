@@ -2,6 +2,7 @@ from multiprocessing import context
 
 from django.http import HttpResponseRedirect, HttpResponseNotFound
 from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse
 
 from todo_app.models import TodoItem
 from todo_app.new_task_validator import NewTaskValidator
@@ -15,6 +16,9 @@ def tasklist(request):
     return render(request, 'tasks/index.html', {'tasks': tasks})
 
 def create_task(request):
+    if request.method == 'GET':
+        create_task_url = reverse("create")
+        return render(request, 'tasks/create_task.html', context={'action': create_task_url})
     if request.method == 'POST':
         new_task = TodoItem(
             description = request.POST.get('description'),
@@ -29,7 +33,8 @@ def create_task(request):
         else:
             new_task.save()
             return redirect('detail', pk=new_task.pk)
-    return render(request, 'tasks/create_task.html')
+
+
 
 def task_detail(request, pk, *args, **kwargs):
     task = get_object_or_404(TodoItem, pk=pk)
@@ -39,8 +44,10 @@ def task_detail(request, pk, *args, **kwargs):
 
 def update_task(request, pk, *args, **kwargs):
     todoitem = get_object_or_404(TodoItem, pk=pk)
+    context = {'task': todoitem}
     if request.method == 'GET':
-        return render(request, 'tasks/update_task.html', {'task': todoitem})
+        context['action'] = reverse("update", kwargs={'pk': todoitem.pk})
+        return render(request, 'tasks/update_task.html', context)
     if request.method == 'POST':
         todoitem.description = request.POST.get('description')
         todoitem.status = request.POST.get('status')
@@ -48,7 +55,7 @@ def update_task(request, pk, *args, **kwargs):
         todoitem.detail_description = request.POST.get('detail_description')
         errors = validate_task(todoitem)
         if errors:
-            context = {'errors': errors, 'task': todoitem}
+            context['errors'] = errors
             return render(request, 'tasks/update_task.html', context)
         else:
             todoitem.save()
