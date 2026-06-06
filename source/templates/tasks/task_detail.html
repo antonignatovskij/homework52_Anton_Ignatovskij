@@ -9,27 +9,51 @@
             <div class="card shadow-sm border-0">
                 <div class="card-body p-4">
                     <h1 class="h3 fw-bold mb-3">
-                        {{task.description}}
+                        {{ task.description }}
                     </h1>
                     <div class="d-flex gap-2 flex-wrap mb-4">
                         <span class="badge text-bg-warning">
-                            {{task.status}}
+                            {{ task.status }}
                         </span>
                         <span class="badge text-bg-secondary">
                           {% if task.date %}
-                              {{task.date}}
+                              {{ task.date }}
                           {% else %}
-                            Без срока
+                              Без срока
                           {% endif %}
                         </span>
                     </div>
                     <div class="card bg-body-tertiary border-0">
                         <div class="card-body">
                             <p class="mb-0 text-secondary">
-                                {{task.detail_description}}
+                                {{ task.detail_description }}
                             </p>
                         </div>
                     </div>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Удалить
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Вы точно хотите удалить задачу '{{ task.description }}'?</p>
+                    <form action="{% url 'delete' task.pk %}" id="delete-form" method="post">{% csrf_token %}</form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Отмена</button>
+                    <button type="submit" form="delete-form" class="btn btn-danger">Удалить</button>
                 </div>
             </div>
         </div>
