@@ -1,0 +1,30 @@
+<form id="task-form" action="" method="POST">
+
+{% csrf_token %}
+
+{% for error in form.non_field_errors %}
+   <p class="text-danger fs-6">{{ error }}</p>
+{% endfor %}
+
+<p><label for="{{ form.description.id_for_label }}">{{ form.description.label }}</label></p>
+{% for error in form.description.errors %}
+   <p class="text-danger fs-6">{{ error }}</p>
+{% endfor %}
+<p>{{ form.description }}</p>
+
+<p><label for="{{ form.detail_description.id_for_label }}">{{ form.detail_description.label }}</label></p>
+{% for error in form.detail_description.errors %}
+   <p class="text-danger fs-6">{{ error }}</p>
+{% endfor %}
+<p>{{ form.detail_description }}</p>
+
+<p><label for="{{ form.date.id_for_label }}">{{ form.date.label }}</label></p>
+{% for error in form.date.errors %}
+   <p class="text-danger fs-6">{{ error }}</p>
+{% endfor %}
+<p>{{ form.date }}</p>
+
+<p><label for="{{ form.status.id_for_label }}">{{ form.status.label }}</label></p>
+<p>{{ form.status }}</p>
+
+</form>
