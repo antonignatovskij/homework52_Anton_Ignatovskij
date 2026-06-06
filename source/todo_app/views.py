@@ -62,5 +62,6 @@ def update_task(request, pk, *args, **kwargs):
 def delete_task(request, pk, *args, **kwargs):
     if request.method == 'POST':
         todoitem = get_object_or_404(TodoItem, pk=pk)
+        print(todoitem.description)
         todoitem.delete()
     return redirect('task_list')

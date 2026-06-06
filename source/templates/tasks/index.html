@@ -7,52 +7,58 @@
 {% endblock %}
 
 {% block content %}
-<div class="container py-4">
-    <div class="text-center mb-5">
-        <h1 class="fw-bold text-success">Все задачи</h1>
-    </div>
-    {% if tasks %}
-        <div class="row g-4">
-            {% for task in tasks %}
-                <div class="col-md-6 col-lg-4">
-                    <div class="card border-0 shadow-sm h-100 rounded-4">
-                        <div class="card-body d-flex flex-column p-4">
-                            <h3 class="h5 fw-semibold mb-3">
-                                {{ task.description }}
-                            </h3>
-                            <div class="mb-3">
-                                <span class="fw-semibold">Статус:</span>
-                                {% if task.status == "done" %}
-                                    <span class="badge bg-success rounded-pill px-3 py-2">
-                                        Выполнено
-                                    </span>
-                                {% else %}
-                                    <span class="badge bg-warning text-dark rounded-pill px-3 py-2">
-                                        В процессе
-                                    </span>
-                                {% endif %}
-                            </div>
-                            <div class="text-muted mb-4">
-                                <span class="fw-semibold">Срок:</span>
-                                {% if task.date %}
-                                    {{ task.date }}
-                                {% else %}
-                                    Не указан
-                                {% endif %}
-                            </div>
-                            <div class="mt-auto d-flex gap-2">
-                                <a href="{% url 'detail' task.pk %}" class="btn btn-outline-success btn-sm">Подробнее</a>
-                                <a href="{% url 'update' task.pk %}" class="btn btn-success btn-sm">Редактировать</a>
+    <div class="container py-4">
+        <div class="text-center mb-5">
+            <h1 class="fw-bold text-success">Все задачи</h1>
+        </div>
+        {% if tasks %}
+            <div class="row g-4">
+                {% for task in tasks %}
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card border-0 shadow-sm h-100 rounded-4">
+                            <div class="card-body d-flex flex-column p-4">
+                                <h3 class="h5 fw-semibold mb-3">
+                                    {{ task.description }}
+                                </h3>
+                                <div class="mb-3">
+                                    <span class="fw-semibold">Статус:</span>
+                                    {% if task.status == "done" %}
+                                        <span class="badge bg-success rounded-pill px-3 py-2">
+                                           {{ task.status }}
+                                        </span>
+                                    {% else %}
+                                        <span class="badge bg-warning text-dark rounded-pill px-3 py-2">
+                                           {{ task.status }}
+                                        </span>
+                                    {% endif %}
+                                </div>
+                                <div class="text-muted mb-4">
+                                    <span class="fw-semibold">Срок:</span>
+                                    {% if task.date %}
+                                        {{ task.date }}
+                                    {% else %}
+                                        Не указан
+                                    {% endif %}
+                                </div>
+                                <div class="mt-auto d-flex gap-2">
+                                    <a href="{% url 'detail' task.pk %}" class="btn btn-outline-success btn-sm">Подробнее</a>
+                                    <a href="{% url 'update' task.pk %}" class="btn btn-success btn-sm">Редактировать</a>
+                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#task-{{ task.pk }}-Modal">
+                                        Удалить
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            {% endfor %}
-        </div>
-    {% else %}
-        <div class="alert alert-success text-center rounded-4 shadow-sm">
-            Пока нет задач
-        </div>
-    {% endif %}
-</div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="alert alert-success text-center rounded-4 shadow-sm">
+                Пока нет задач
+            </div>
+        {% endif %}
+    </div>
+    {% for task in tasks %}
+        {% include 'partial/task_delete_modal.html' with task=task %}
+    {% endfor %}
 {% endblock %}
