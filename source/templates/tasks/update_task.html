@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load django_bootstrap5 %}
 
 {% block content %}
     <div class="row justify-content-center">
@@ -11,7 +11,11 @@
                 </div>
 
                 <div class="card-body">
-                    {% include 'partial/task_form.html' with action=action %}
+{#                    {% include 'partial/task_form.html' with action=action %}#}
+                    <form action="" id="task-form" method="POST">
+                        {% bootstrap_form form layout="floating" %}
+                        {% csrf_token %}
+                    </form>
                 </div>
 
                 <div class="card-footer text-center">
