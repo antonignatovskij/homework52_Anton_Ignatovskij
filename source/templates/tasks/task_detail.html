@@ -30,9 +30,12 @@
                             </p>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Удалить
-                    </button>
+                    <div class="text-end mt-4">
+                        <a class="btn btn-success me-2" href="{% url 'task_list' %}"> назад</a>
+                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Удалить
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -44,7 +47,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Удалить задачу</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
