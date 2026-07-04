@@ -14,4 +14,6 @@ class TaskForm(forms.ModelForm):
     class Meta:
         model = TodoItem
         fields = ('title', 'description', 'status', 'type')
-        widgets = {}
+        widgets = {
+            'description': widgets.Textarea(attrs={'cols': '40', 'rows': '5'}),
+        }
