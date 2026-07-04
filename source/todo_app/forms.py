@@ -4,7 +4,7 @@ from django.forms import widgets
 
 from todo_app.models import TodoItem
 
-class TaskForm(forms.Form):
+class TaskForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -15,6 +15,3 @@ class TaskForm(forms.Form):
         model = TodoItem
         fields = ('title', 'description', 'status', 'type')
         widgets = {}
-
-    def save(self):
-        pass
