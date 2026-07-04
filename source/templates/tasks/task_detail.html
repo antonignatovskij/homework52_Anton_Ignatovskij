@@ -9,24 +9,28 @@
             <div class="card shadow-sm border-0">
                 <div class="card-body p-4">
                     <h1 class="h3 fw-bold mb-3">
-                        {{ task.description }}
+                        {{ task.title }}
                     </h1>
                     <div class="d-flex gap-2 flex-wrap mb-4">
                         <span class="badge text-bg-warning">
                             {{ task.status }}
                         </span>
+                        <span class="badge text-success">
+                            {{ task.type }}
+                        </span>
+                    </div>
+                    <div class="mb-4">
                         <span class="badge text-bg-secondary">
-                          {% if task.date %}
-                              {{ task.date }}
-                          {% else %}
-                              Без срока
-                          {% endif %}
+                              Создано: {{task.date_of_update}}
+                        </span>
+                        <span class="badge text-bg-secondary">
+                              Изменено: {{ task.date_of_add }}
                         </span>
                     </div>
                     <div class="card bg-body-tertiary border-0">
                         <div class="card-body">
                             <p class="mb-0 text-secondary">
-                                {{ task.detail_description }}
+                                {{ task.description }}
                             </p>
                         </div>
                     </div>

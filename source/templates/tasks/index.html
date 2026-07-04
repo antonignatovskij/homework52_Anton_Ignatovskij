@@ -9,7 +9,7 @@
 {% block content %}
 <div class="container py-4">
     <div class="text-center mb-5">
-        <h1 class="fw-bold text-success">Все задачи</h1>
+        <h1 class="fw-bold">Все задачи</h1>
     </div>
     {% if tasks %}
         <div class="row g-4">
@@ -17,30 +17,45 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="card border-0 shadow-sm h-100 rounded-4">
                         <div class="card-body d-flex flex-column p-4">
-                            <h3 class="h5 fw-semibold mb-3">
-                                {{ task.description }}
+                            <h3 class="h5 fw-semibold mb-4 text-center">
+                                {{ task.title }}
                             </h3>
+                            <div>
+                                <span class="fw-semibold">Теги:</span>
+                                <span class="text-success">
+                                        {{ task.type.type_title }}
+                                </span>
+                            </div>
                             <div class="mb-3">
                                 <span class="fw-semibold">Статус:</span>
-                                {% if task.status == "done" %}
+                                {% if task.status.status_title == "New" %}
+                                    <span class="badge bg-primary rounded-pill px-3 py-2">
+                                        {{ task.status.status_title }}
+                                    </span>
+                                {% elif task.status.status_title == "Done" %}
                                     <span class="badge bg-success rounded-pill px-3 py-2">
-                                        Выполнено
+                                        {{ task.status.status_title }}
                                     </span>
                                 {% else %}
                                     <span class="badge bg-warning text-dark rounded-pill px-3 py-2">
-                                        В процессе
+                                        {{ task.status.status_title }}
                                     </span>
                                 {% endif %}
                             </div>
-                            <div class="text-muted mb-4">
-                                <span class="fw-semibold">Срок:</span>
-                                {% if task.date %}
-                                    {{ task.date }}
-                                {% else %}
-                                    Не указан
-                                {% endif %}
+                            <div class="text-muted">
+                                <small>
+                                    <span class="fw-semibold">Дата создания:</span>
+                                    {{ task.date_of_add }}
+                                </small>
                             </div>
-                            <div class="mt-auto d-flex gap-2">
+                            <div class="text-muted mb-4 fs-6">
+                                <small>
+                                    <span class="fw-semibold">Изменено:</span>
+                                    {{ task.date_of_update }}
+                                </small>
+
+                            </div>
+                            <div class="mt-auto d-flex gap-2 ">
                                 <a href="{% url 'detail' task.pk %}" class="btn btn-outline-success btn-sm">Подробнее</a>
                                 <a href="{% url 'update' task.pk %}" class="btn btn-success btn-sm">Редактировать</a>
                             </div>
