@@ -1,10 +1,11 @@
 from django import forms
-from django.core.validators import MinValueValidator
 from django.forms import widgets
 
-from todo_app.models import TodoItem
+from todo_app.models import TodoItem, Type, Status
 
 class TaskForm(forms.ModelForm):
+    status = forms.ModelChoiceField(queryset=Status.objects.all())
+    type = forms.ModelChoiceField(queryset=Type.objects.all())
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 

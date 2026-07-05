@@ -1,29 +1,32 @@
 {% extends "base.html" %}
+{% load django_bootstrap5 %}
 
 
 {% block content %}
-    <div class="row justify-content-center">
-        <div class="col-md-6">
+<div class="row justify-content-center">
+    <div class="col-md-6">
 
-            <div class="card shadow">
-                <div class="card-header bg-success text-white">
-                    <h3 class="mb-0">задача: {{ task.description }}</h3>
-                </div>
-
-                <div class="card-body">
-                    {% include 'partial/task_form.html' with action=action %}
-                </div>
-
-                <div class="card-footer text-center">
-                    <a href="/" class="btn btn-outline-success">
-                        Назад
-                    </a>
-                    <button type="submit" form="task-form" class="btn btn-warning">
-                            Сохранить
-                    </button>
-                </div>
+        <div class="card shadow">
+            <div class="card-header bg-success text-white">
+                <h3 class="mb-0">Добавить задачу</h3>
             </div>
 
+            <div class="card-body p-4">
+                <form action="" id="task-form" method="POST">
+                    {% bootstrap_form form layout="floating" %}
+                    {% csrf_token %}
+                </form>
+            </div>
+            <div class="card-footer text-center">
+                <a href="/" class="btn btn-outline-success">
+                    Назад
+                </a>
+                <button type="submit" form="task-form" class="btn btn-warning">
+                    Сохранить
+                </button>
+            </div>
         </div>
+
     </div>
+</div>
 {% endblock %}
