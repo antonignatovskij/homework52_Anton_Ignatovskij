@@ -1,10 +1,12 @@
 from django import forms
 from django.forms import widgets
 
-from todo_app.models import TodoItem, Type, Status
+from todo_app.models import TodoItem, Status
+
 
 class TaskForm(forms.ModelForm):
     status = forms.ModelChoiceField(queryset=Status.objects.all())
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 

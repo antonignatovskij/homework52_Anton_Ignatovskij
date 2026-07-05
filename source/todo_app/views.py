@@ -1,12 +1,10 @@
-from multiprocessing import context
-
 from django.shortcuts import render, get_object_or_404, redirect
-
 from django.views import View
 from django.views.generic import TemplateView
 
 from todo_app.forms import TaskForm
 from todo_app.models import TodoItem
+
 
 # Create your views here.
 
@@ -25,6 +23,7 @@ class TaskDetailView(TemplateView):
     def get_context_data(self, **kwargs):
         kwargs['task'] = get_object_or_404(TodoItem, pk=kwargs.get('pk'))
         return super().get_context_data(**kwargs)
+
 
 class TaskCreateView(View):
     def get(self, request, *args, **kwargs):

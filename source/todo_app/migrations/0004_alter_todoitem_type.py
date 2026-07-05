@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('todo_app', '0003_remove_todoitem_type_todoitem_type'),
     ]
@@ -13,6 +12,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='todoitem',
             name='type',
-            field=models.ManyToManyField(blank=True, null=True, related_name='tasks', to='todo_app.type', verbose_name='Типы'),
+            field=models.ManyToManyField(blank=True, null=True, related_name='tasks', to='todo_app.type',
+                                         verbose_name='Типы'),
         ),
     ]

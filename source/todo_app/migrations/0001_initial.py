@@ -5,7 +5,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -34,8 +33,11 @@ class Migration(migrations.Migration):
                 ('description', models.TextField(blank=True, max_length=500, null=True, verbose_name='Описание')),
                 ('date_of_add', models.DateField(auto_now_add=True, verbose_name='Дата создания')),
                 ('date_of_update', models.DateField(auto_now=True, verbose_name='Последние изменения')),
-                ('status', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='task', to='todo_app.status', verbose_name='Статус')),
-                ('type', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='task', to='todo_app.type', verbose_name='Тип')),
+                ('status', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='task',
+                                             to='todo_app.status', verbose_name='Статус')),
+                ('type',
+                 models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='task', to='todo_app.type',
+                                   verbose_name='Тип')),
             ],
             options={
                 'verbose_name': 'task',

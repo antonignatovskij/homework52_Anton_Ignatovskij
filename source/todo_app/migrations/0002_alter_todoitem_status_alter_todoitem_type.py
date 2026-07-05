@@ -5,7 +5,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('todo_app', '0001_initial'),
     ]
@@ -14,11 +13,13 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='todoitem',
             name='status',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.RESTRICT, related_name='task', to='todo_app.status', verbose_name='Статус'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.RESTRICT, related_name='task',
+                                    to='todo_app.status', verbose_name='Статус'),
         ),
         migrations.AlterField(
             model_name='todoitem',
             name='type',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.RESTRICT, related_name='task', to='todo_app.type', verbose_name='Тип'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.RESTRICT, related_name='task',
+                                    to='todo_app.type', verbose_name='Тип'),
         ),
     ]

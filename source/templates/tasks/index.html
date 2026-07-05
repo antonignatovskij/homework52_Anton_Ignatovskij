@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
 {% block nav %}
-    <a class="nav-link" aria-current="page" href="{% url 'create' %}">
-        Создать задачу
-    </a>
+<a aria-current="page" class="nav-link" href="{% url 'create' %}">
+    Создать задачу
+</a>
 {% endblock %}
 
 {% block content %}
@@ -12,63 +12,63 @@
         <h1 class="fw-bold">Все задачи</h1>
     </div>
     {% if tasks %}
-        <div class="row g-4">
-            {% for task in tasks %}
-                <div class="col-md-6 col-lg-4">
-                    <div class="card border-0 shadow-sm h-100 rounded-4">
-                        <div class="card-body d-flex flex-column p-4">
-                            <h3 class="h5 fw-semibold mb-4 text-center">
-                                {{ task.title }}
-                            </h3>
-                            <div>
-                                {% for type in task.type.all %}
-                                    <span class="text-success">{{ type }}</span>
-                                    {% empty %}
-                                    <span>Нет тегов</span>
-                                {% endfor %}
-                            </div>
-                            <div class="mb-3">
-                                <span class="fw-semibold">Статус:</span>
-                                {% if task.status.status_title == "New" %}
-                                    <span class="badge bg-primary rounded-pill px-3 py-2">
+    <div class="row g-4">
+        {% for task in tasks %}
+        <div class="col-md-6 col-lg-4">
+            <div class="card border-0 shadow-sm h-100 rounded-4">
+                <div class="card-body d-flex flex-column p-4">
+                    <h3 class="h5 fw-semibold mb-4 text-center">
+                        {{ task.title }}
+                    </h3>
+                    <div>
+                        {% for type in task.type.all %}
+                        <span class="text-success">{{ type }}</span>
+                        {% empty %}
+                        <span>Нет тегов</span>
+                        {% endfor %}
+                    </div>
+                    <div class="mb-3">
+                        <span class="fw-semibold">Статус:</span>
+                        {% if task.status.status_title == "New" %}
+                        <span class="badge bg-primary rounded-pill px-3 py-2">
                                         {{ task.status.status_title }}
                                     </span>
-                                {% elif task.status.status_title == "Done" %}
-                                    <span class="badge bg-success rounded-pill px-3 py-2">
+                        {% elif task.status.status_title == "Done" %}
+                        <span class="badge bg-success rounded-pill px-3 py-2">
                                         {{ task.status.status_title }}
                                     </span>
-                                {% else %}
-                                    <span class="badge bg-warning text-dark rounded-pill px-3 py-2">
+                        {% else %}
+                        <span class="badge bg-warning text-dark rounded-pill px-3 py-2">
                                         {{ task.status.status_title }}
                                     </span>
-                                {% endif %}
-                            </div>
-                            <div class="text-muted">
-                                <small>
-                                    <span class="fw-semibold">Дата создания:</span>
-                                    {{ task.date_of_add }}
-                                </small>
-                            </div>
-                            <div class="text-muted mb-4 fs-6">
-                                <small>
-                                    <span class="fw-semibold">Изменено:</span>
-                                    {{ task.date_of_update }}
-                                </small>
+                        {% endif %}
+                    </div>
+                    <div class="text-muted">
+                        <small>
+                            <span class="fw-semibold">Дата создания:</span>
+                            {{ task.date_of_add }}
+                        </small>
+                    </div>
+                    <div class="text-muted mb-4 fs-6">
+                        <small>
+                            <span class="fw-semibold">Изменено:</span>
+                            {{ task.date_of_update }}
+                        </small>
 
-                            </div>
-                            <div class="mt-auto d-flex gap-2 ">
-                                <a href="{% url 'detail' task.pk %}" class="btn btn-outline-success btn-sm">Подробнее</a>
-                                <a href="{% url 'update' task.pk %}" class="btn btn-success btn-sm">Редактировать</a>
-                            </div>
-                        </div>
+                    </div>
+                    <div class="mt-auto d-flex gap-2 ">
+                        <a class="btn btn-outline-success btn-sm" href="{% url 'detail' task.pk %}">Подробнее</a>
+                        <a class="btn btn-success btn-sm" href="{% url 'update' task.pk %}">Редактировать</a>
                     </div>
                 </div>
-            {% endfor %}
+            </div>
         </div>
+        {% endfor %}
+    </div>
     {% else %}
-        <div class="alert alert-success text-center rounded-4 shadow-sm">
-            Пока нет задач
-        </div>
+    <div class="alert alert-success text-center rounded-4 shadow-sm">
+        Пока нет задач
+    </div>
     {% endif %}
 </div>
 {% endblock %}

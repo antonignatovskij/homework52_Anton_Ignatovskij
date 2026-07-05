@@ -1,72 +1,71 @@
 {% extends "base.html" %}
 
 {% block nav %}
-    <a class="nav-link" aria-current="page" href="{% url 'create' %}">Добавить задачу</a>
+<a aria-current="page" class="nav-link" href="{% url 'create' %}">Добавить задачу</a>
 {% endblock %}
 {% block content %}
-    <div class="row justify-content-center">
-        <div class="col-lg-8">
-            <div class="card shadow-sm border-0">
-                <div class="card-body p-4">
-                    <h1 class="h3 fw-bold mb-3">
-                        {{ task.title }}
-                    </h1>
-                    <div class="d-flex gap-2 flex-wrap mb-4">
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+                <h1 class="h3 fw-bold mb-3">
+                    {{ task.title }}
+                </h1>
+                <div class="d-flex gap-2 flex-wrap mb-4">
                         <span class="badge text-bg-warning">
                             {{ task.status }}
                         </span>
-                        <span class="badge text-success">
+                    <span class="badge text-success">
                             {% for type in task.type.all %}
                                     <span>{{ type }}</span>
                                 {% empty %}
                                 <span>Нет тегов</span>
                             {% endfor %}
                         </span>
-                    </div>
-                    <div class="mb-4">
+                </div>
+                <div class="mb-4">
                         <span class="badge text-bg-secondary">
                               Создано: {{task.date_of_update}}
                         </span>
-                        <span class="badge text-bg-secondary">
+                    <span class="badge text-bg-secondary">
                               Изменено: {{ task.date_of_add }}
                         </span>
+                </div>
+                <div class="card bg-body-tertiary border-0">
+                    <div class="card-body">
+                        <p class="mb-0 text-secondary">
+                            {{ task.description }}
+                        </p>
                     </div>
-                    <div class="card bg-body-tertiary border-0">
-                        <div class="card-body">
-                            <p class="mb-0 text-secondary">
-                                {{ task.description }}
-                            </p>
-                        </div>
-                    </div>
-                    <div class="text-end mt-4">
-                        <a class="btn btn-success me-2" href="{% url 'task_list' %}"> назад</a>
-                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            Удалить
-                        </button>
-                    </div>
+                </div>
+                <div class="text-end mt-4">
+                    <a class="btn btn-success me-2" href="{% url 'task_list' %}"> назад</a>
+                    <button class="btn btn-warning" data-bs-target="#exampleModal" data-bs-toggle="modal" type="button">
+                        Удалить
+                    </button>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 
-
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Удалить задачу</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>Вы точно хотите удалить задачу '{{ task.description }}'?</p>
-                    <form action="{% url 'delete' task.pk %}" id="delete-form" method="post">{% csrf_token %}</form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Отмена</button>
-                    <button type="submit" form="delete-form" class="btn btn-danger">Удалить</button>
-                </div>
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Удалить задачу</h1>
+                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <div class="modal-body">
+                <p>Вы точно хотите удалить задачу '{{ task.description }}'?</p>
+                <form action="{% url 'delete' task.pk %}" id="delete-form" method="post">{% csrf_token %}</form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-warning" data-bs-dismiss="modal" type="button">Отмена</button>
+                <button class="btn btn-danger" form="delete-form" type="submit">Удалить</button>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}

@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('todo_app', '0002_alter_todoitem_status_alter_todoitem_type'),
     ]
