@@ -21,10 +21,9 @@
                                 {{ task.title }}
                             </h3>
                             <div>
-                                <span class="fw-semibold">Теги:</span>
-                                <span class="text-success">
-                                        {{ task.type.type_title }}
-                                </span>
+                                {% for type in task.type.all %}
+                                    <span class="text-success">{{ type }}</span>
+                                {% endfor %}
                             </div>
                             <div class="mb-3">
                                 <span class="fw-semibold">Статус:</span>

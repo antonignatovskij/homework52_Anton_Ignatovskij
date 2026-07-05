@@ -15,6 +15,7 @@ class TaskListView(TemplateView):
 
     def get_context_data(pk, *args, **kwargs):
         kwargs['tasks'] = TodoItem.objects.all()
+
         return super().get_context_data(**kwargs)
 
 
@@ -34,6 +35,8 @@ class TaskCreateView(View):
         form = TaskForm(request.POST)
         if form.is_valid():
             task = form.save()
+            task.type.set(form.cleaned_data['type'])
+            task.save()
             return redirect('detail', pk=task.pk)
         return render(request, 'tasks/create_task.html', {'form': form})
 
@@ -52,6 +55,8 @@ class TaskUpdateView(View):
         form = TaskForm(request.POST, instance=self.task)
         if form.is_valid():
             task = form.save()
+            task.type.set(form.cleaned_data['type'])
+            task.save()
             return redirect('detail', pk=task.pk)
         return render(request, 'tasks/update_task.html', {'form': form})
 
