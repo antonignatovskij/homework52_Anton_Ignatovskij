@@ -19,62 +19,72 @@
 },
 {
     "model": "todo_app.todoitem",
-    "pk": 1,
+    "pk": 20,
     "fields": {
-        "title": "Тестовая задача 1",
-        "description": "в админке",
-        "status": 1,
-        "type": 1,
-        "date_of_add": "2026-07-04",
-        "date_of_update": "2026-07-04"
+        "title": "Баг",
+        "description": "в процессе решения",
+        "status": 2,
+        "date_of_add": "2026-07-05",
+        "date_of_update": "2026-07-05",
+        "type": [
+            2
+        ]
     }
 },
 {
     "model": "todo_app.todoitem",
-    "pk": 3,
+    "pk": 21,
     "fields": {
-        "title": "Тест задача 2",
+        "title": "Идея",
+        "description": "идея для устранения бага",
+        "status": 1,
+        "date_of_add": "2026-07-05",
+        "date_of_update": "2026-07-05",
+        "type": [
+            2,
+            3
+        ]
+    }
+},
+{
+    "model": "todo_app.todoitem",
+    "pk": 22,
+    "fields": {
+        "title": "Помыть посуду",
         "description": "",
-        "status": 2,
-        "type": 3,
-        "date_of_add": "2026-07-04",
-        "date_of_update": "2026-07-04"
+        "status": 3,
+        "date_of_add": "2026-07-05",
+        "date_of_update": "2026-07-05",
+        "type": []
     }
 },
 {
     "model": "todo_app.todoitem",
-    "pk": 4,
+    "pk": 23,
     "fields": {
-        "title": "Новая задача 2",
-        "description": "Новая задача",
-        "status": 2,
-        "type": 2,
-        "date_of_add": "2026-07-04",
-        "date_of_update": "2026-07-04"
-    }
-},
-{
-    "model": "todo_app.todoitem",
-    "pk": 5,
-    "fields": {
-        "title": "Ошибка для исправления",
-        "description": "ошибка, требующая исправления",
-        "status": 2,
-        "type": 2,
-        "date_of_add": "2026-07-04",
-        "date_of_update": "2026-07-04"
-    }
-},
-{
-    "model": "todo_app.todoitem",
-    "pk": 6,
-    "fields": {
-        "title": "Улучшение 2",
-        "description": "идея улучшения",
+        "title": "Проблема",
+        "description": "решить как можно скорее",
         "status": 1,
-        "type": 3,
-        "date_of_add": "2026-07-04",
-        "date_of_update": "2026-07-04"
+        "date_of_add": "2026-07-05",
+        "date_of_update": "2026-07-05",
+        "type": [
+            1,
+            3
+        ]
+    }
+},
+{
+    "model": "todo_app.todoitem",
+    "pk": 24,
+    "fields": {
+        "title": "Баг, уже решенный",
+        "description": "",
+        "status": 3,
+        "date_of_add": "2026-07-05",
+        "date_of_update": "2026-07-05",
+        "type": [
+            2
+        ]
     }
 },
 {

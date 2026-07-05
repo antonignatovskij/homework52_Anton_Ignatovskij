@@ -16,7 +16,11 @@
                             {{ task.status }}
                         </span>
                         <span class="badge text-success">
-                            {{ task.type }}
+                            {% for type in task.type.all %}
+                                    <span>{{ type }}</span>
+                                {% empty %}
+                                <span>Нет тегов</span>
+                            {% endfor %}
                         </span>
                     </div>
                     <div class="mb-4">

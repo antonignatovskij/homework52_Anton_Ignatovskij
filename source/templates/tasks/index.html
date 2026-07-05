@@ -23,6 +23,8 @@
                             <div>
                                 {% for type in task.type.all %}
                                     <span class="text-success">{{ type }}</span>
+                                    {% empty %}
+                                    <span>Нет тегов</span>
                                 {% endfor %}
                             </div>
                             <div class="mb-3">

@@ -16,4 +16,5 @@ class TaskForm(forms.ModelForm):
         fields = ('title', 'description', 'status', 'type')
         widgets = {
             'description': widgets.Textarea(attrs={'cols': '40', 'rows': '5'}),
+            'type': widgets.CheckboxSelectMultiple()
         }
