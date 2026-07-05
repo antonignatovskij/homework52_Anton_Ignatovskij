@@ -1,9 +1,22 @@
 from django import forms
-from django.forms.widgets import Textarea, TextInput
+from django.forms import widgets
 
-CHOICES = [('new','новая'),('in_progress','в процессе'),('done','сделано')]
-class TaskForm(forms.Form):
-    description = forms.CharField(widget=TextInput(attrs={"class":"form-control"}), required=True, label="Описание", error_messages={"required":"Описание - обязательное поле"})
-    detail_description = forms.CharField(widget=Textarea(attrs={"class":"form-control"}), required=False, label="Подробнее")
-    date = forms.CharField(widget=TextInput(attrs={"class":"form-control"}), required=True, label="Выполнить до", error_messages={"required":"Дедлайн - обязательное поле"})
-    status = forms.ChoiceField(widget=forms.Select(attrs={"class":"form-select"}),choices=CHOICES)
+from todo_app.models import TodoItem, Status
+
+
+class TaskForm(forms.ModelForm):
+    status = forms.ModelChoiceField(queryset=Status.objects.all())
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
+
+    class Meta:
+        model = TodoItem
+        fields = ('title', 'description', 'status', 'type')
+        widgets = {
+            'description': widgets.Textarea(attrs={'cols': '40', 'rows': '5'}),
+            'type': widgets.CheckboxSelectMultiple()
+        }

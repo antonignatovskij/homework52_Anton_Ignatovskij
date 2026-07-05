@@ -1,0 +1,132 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$1200000$fXhSRml9uKKbY8TziTsvth$xg9YjMW161gaSd6DMO83UeLfL6MD4e254G1RVqMlI4Y=",
+      "last_login": "2026-07-04T10:33:46.374Z",
+      "is_superuser": true,
+      "username": "admin",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2026-07-04T10:33:20.544Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "todo_app.todoitem",
+    "pk": 20,
+    "fields": {
+      "title": "Баг",
+      "description": "в процессе решения",
+      "status": 2,
+      "date_of_add": "2026-07-05",
+      "date_of_update": "2026-07-05",
+      "type": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "todo_app.todoitem",
+    "pk": 21,
+    "fields": {
+      "title": "Идея",
+      "description": "идея для устранения бага",
+      "status": 1,
+      "date_of_add": "2026-07-05",
+      "date_of_update": "2026-07-05",
+      "type": [
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "model": "todo_app.todoitem",
+    "pk": 22,
+    "fields": {
+      "title": "Помыть посуду",
+      "description": "",
+      "status": 3,
+      "date_of_add": "2026-07-05",
+      "date_of_update": "2026-07-05",
+      "type": []
+    }
+  },
+  {
+    "model": "todo_app.todoitem",
+    "pk": 23,
+    "fields": {
+      "title": "Проблема",
+      "description": "решить как можно скорее",
+      "status": 1,
+      "date_of_add": "2026-07-05",
+      "date_of_update": "2026-07-05",
+      "type": [
+        1,
+        3
+      ]
+    }
+  },
+  {
+    "model": "todo_app.todoitem",
+    "pk": 24,
+    "fields": {
+      "title": "Баг, уже решенный",
+      "description": "",
+      "status": 3,
+      "date_of_add": "2026-07-05",
+      "date_of_update": "2026-07-05",
+      "type": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "todo_app.status",
+    "pk": 1,
+    "fields": {
+      "status_title": "New"
+    }
+  },
+  {
+    "model": "todo_app.status",
+    "pk": 2,
+    "fields": {
+      "status_title": "In Progress"
+    }
+  },
+  {
+    "model": "todo_app.status",
+    "pk": 3,
+    "fields": {
+      "status_title": "Done"
+    }
+  },
+  {
+    "model": "todo_app.type",
+    "pk": 1,
+    "fields": {
+      "type_title": "Task"
+    }
+  },
+  {
+    "model": "todo_app.type",
+    "pk": 2,
+    "fields": {
+      "type_title": "Bug"
+    }
+  },
+  {
+    "model": "todo_app.type",
+    "pk": 3,
+    "fields": {
+      "type_title": "Enhancement"
+    }
+  }
+]
