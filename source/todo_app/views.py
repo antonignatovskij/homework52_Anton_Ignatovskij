@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, FormView
 
 from todo_app.forms import TaskForm
 from todo_app.models import TodoItem
@@ -25,24 +25,18 @@ class TaskDetailView(TemplateView):
         return super().get_context_data(**kwargs)
 
 
-class TaskCreateView(View):
-    def get(self, request, *args, **kwargs):
-        form = TaskForm()
-        return render(request, 'tasks/create_task.html', {'form': form})
+class TaskCreateView(FormView):
+    template_name = 'tasks/create_task.html'
+    form_class = TaskForm
 
-    def post(self, request, *args, **kwargs):
-        form = TaskForm(request.POST)
-        if form.is_valid():
-            task = form.save()
-            task.type.set(form.cleaned_data['type'])
-            task.save()
-            return redirect('detail', pk=task.pk)
-        return render(request, 'tasks/create_task.html', {'form': form})
+    def form_valid(self, form):
+        task = form.save()
+        return redirect('detail', pk=task.pk)
 
 
 class TaskUpdateView(View):
     def dispatch(self, request, *args, **kwargs):
-        self.task = get_object_or_404(TodoItem, pk=kwargs.get('pk'))
+        self.task = get_object_or_404(TodoItem, pk=self.kwargs.get('pk'))
         return super().dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
