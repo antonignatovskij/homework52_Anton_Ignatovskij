@@ -11,10 +11,7 @@
             </div>
 
             <div class="card-body p-4">
-                <form action="" id="task-form" method="POST">
-                    {% bootstrap_form form layout="floating" %}
-                    {% csrf_token %}
-                </form>
+                {% include "partial/task_form.html" %}
             </div>
             <div class="card-footer text-center">
                 <a class="btn btn-outline-success" href="/">

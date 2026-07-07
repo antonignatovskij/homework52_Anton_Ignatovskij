@@ -10,13 +10,25 @@ class TaskForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        for field in self.fields.values():
-            field.widget.attrs['class'] = 'form-control'
-
     class Meta:
         model = TodoItem
         fields = ('title', 'description', 'status', 'type')
         widgets = {
-            'description': widgets.Textarea(attrs={'cols': '40', 'rows': '5'}),
+            'title' : widgets.TextInput(attrs={'class': 'form-control'}),
+            'description': widgets.Textarea(attrs={'class':'form-control','cols': '40', 'rows': '5'}),
+            'status': widgets.Select(attrs={'class': 'form-select'}),
             'type': widgets.CheckboxSelectMultiple()
         }
+
+    def clean_title(self):
+        title = self.cleaned_data['title']
+        if len(title) < 3:
+            raise forms.ValidationError("Заголовок задачи должен быть не менее трех символов")
+        return title
+
+    def clean_description(self):
+        description = self.cleaned_data['description']
+        if description:
+            if len(description) < 10:
+                raise forms.ValidationError("Заголовок описания должен быть не менее десяти символов")
+        return description
