@@ -1,132 +1,289 @@
 [
-  {
-    "model": "auth.user",
+{
+    "model": "todo_app.status",
     "pk": 1,
     "fields": {
-      "password": "pbkdf2_sha256$1200000$fXhSRml9uKKbY8TziTsvth$xg9YjMW161gaSd6DMO83UeLfL6MD4e254G1RVqMlI4Y=",
-      "last_login": "2026-07-04T10:33:46.374Z",
-      "is_superuser": true,
-      "username": "admin",
-      "first_name": "",
-      "last_name": "",
-      "email": "",
-      "is_staff": true,
-      "is_active": true,
-      "date_joined": "2026-07-04T10:33:20.544Z",
-      "groups": [],
-      "user_permissions": []
+        "status_title": "New"
     }
-  },
-  {
+},
+{
+    "model": "todo_app.status",
+    "pk": 2,
+    "fields": {
+        "status_title": "In Progress"
+    }
+},
+{
+    "model": "todo_app.status",
+    "pk": 3,
+    "fields": {
+        "status_title": "Done"
+    }
+},
+{
     "model": "todo_app.todoitem",
     "pk": 20,
     "fields": {
-      "title": "Баг",
-      "description": "в процессе решения",
-      "status": 2,
-      "date_of_add": "2026-07-05",
-      "date_of_update": "2026-07-05",
-      "type": [
-        2
-      ]
+        "title": "Баг",
+        "description": "в процессе решения, решение найдено",
+        "status": 3,
+        "date_of_add": "2026-07-05",
+        "date_of_update": "2026-07-07",
+        "type": [
+            2
+        ]
     }
-  },
-  {
+},
+{
     "model": "todo_app.todoitem",
     "pk": 21,
     "fields": {
-      "title": "Идея",
-      "description": "идея для устранения бага",
-      "status": 1,
-      "date_of_add": "2026-07-05",
-      "date_of_update": "2026-07-05",
-      "type": [
-        2,
-        3
-      ]
+        "title": "Идея 12",
+        "description": "идея для устранения бага",
+        "status": 1,
+        "date_of_add": "2026-07-05",
+        "date_of_update": "2026-07-05",
+        "type": [
+            2,
+            3
+        ]
     }
-  },
-  {
-    "model": "todo_app.todoitem",
-    "pk": 22,
-    "fields": {
-      "title": "Помыть посуду",
-      "description": "",
-      "status": 3,
-      "date_of_add": "2026-07-05",
-      "date_of_update": "2026-07-05",
-      "type": []
-    }
-  },
-  {
-    "model": "todo_app.todoitem",
-    "pk": 23,
-    "fields": {
-      "title": "Проблема",
-      "description": "решить как можно скорее",
-      "status": 1,
-      "date_of_add": "2026-07-05",
-      "date_of_update": "2026-07-05",
-      "type": [
-        1,
-        3
-      ]
-    }
-  },
-  {
+},
+{
     "model": "todo_app.todoitem",
     "pk": 24,
     "fields": {
-      "title": "Баг, уже решенный",
-      "description": "",
-      "status": 3,
-      "date_of_add": "2026-07-05",
-      "date_of_update": "2026-07-05",
-      "type": [
-        2
-      ]
+        "title": "Баг, уже решенный",
+        "description": "",
+        "status": 3,
+        "date_of_add": "2026-07-05",
+        "date_of_update": "2026-07-05",
+        "type": [
+            2
+        ]
     }
-  },
-  {
-    "model": "todo_app.status",
-    "pk": 1,
+},
+{
+    "model": "todo_app.todoitem",
+    "pk": 33,
     "fields": {
-      "status_title": "New"
+        "title": "Задача, в названии которой есть слово Баг",
+        "description": "Оченб серьезная задача",
+        "status": 1,
+        "date_of_add": "2026-07-07",
+        "date_of_update": "2026-07-07",
+        "type": [
+            1,
+            3
+        ]
     }
-  },
-  {
-    "model": "todo_app.status",
-    "pk": 2,
+},
+{
+    "model": "todo_app.todoitem",
+    "pk": 34,
     "fields": {
-      "status_title": "In Progress"
+        "title": "Задача 23",
+        "description": "",
+        "status": 2,
+        "date_of_add": "2026-07-07",
+        "date_of_update": "2026-07-07",
+        "type": [
+            2
+        ]
     }
-  },
-  {
-    "model": "todo_app.status",
-    "pk": 3,
+},
+{
+    "model": "todo_app.todoitem",
+    "pk": 35,
     "fields": {
-      "status_title": "Done"
+        "title": "Улучшение",
+        "description": "срочно решить",
+        "status": 1,
+        "date_of_add": "2026-07-07",
+        "date_of_update": "2026-07-07",
+        "type": [
+            3
+        ]
     }
-  },
-  {
+},
+{
+    "model": "todo_app.todoitem",
+    "pk": 36,
+    "fields": {
+        "title": "тестовая задача",
+        "description": "",
+        "status": 3,
+        "date_of_add": "2026-07-07",
+        "date_of_update": "2026-07-07",
+        "type": [
+            2
+        ]
+    }
+},
+{
+    "model": "todo_app.todoitem",
+    "pk": 37,
+    "fields": {
+        "title": "срочное улучшение",
+        "description": "",
+        "status": 3,
+        "date_of_add": "2026-07-07",
+        "date_of_update": "2026-07-07",
+        "type": [
+            3
+        ]
+    }
+},
+{
+    "model": "todo_app.todoitem",
+    "pk": 38,
+    "fields": {
+        "title": "заполнить анкету",
+        "description": "заполнить анкету чокопай",
+        "status": 2,
+        "date_of_add": "2026-07-07",
+        "date_of_update": "2026-07-07",
+        "type": [
+            2,
+            3
+        ]
+    }
+},
+{
+    "model": "todo_app.todoitem",
+    "pk": 39,
+    "fields": {
+        "title": "задача",
+        "description": "полное описание",
+        "status": 3,
+        "date_of_add": "2026-07-07",
+        "date_of_update": "2026-07-07",
+        "type": []
+    }
+},
+{
+    "model": "todo_app.todoitem",
+    "pk": 40,
+    "fields": {
+        "title": "Мультизадача",
+        "description": "",
+        "status": 1,
+        "date_of_add": "2026-07-07",
+        "date_of_update": "2026-07-07",
+        "type": [
+            1,
+            2,
+            3
+        ]
+    }
+},
+{
+    "model": "todo_app.todoitem",
+    "pk": 41,
+    "fields": {
+        "title": "описание заголовка",
+        "description": "Что-то в описании",
+        "status": 2,
+        "date_of_add": "2026-07-07",
+        "date_of_update": "2026-07-07",
+        "type": [
+            1
+        ]
+    }
+},
+{
+    "model": "todo_app.todoitem",
+    "pk": 42,
+    "fields": {
+        "title": "Тайтл",
+        "description": "",
+        "status": 2,
+        "date_of_add": "2026-07-07",
+        "date_of_update": "2026-07-07",
+        "type": [
+            1,
+            3
+        ]
+    }
+},
+{
+    "model": "todo_app.todoitem",
+    "pk": 43,
+    "fields": {
+        "title": "Завершенная задача",
+        "description": "",
+        "status": 3,
+        "date_of_add": "2026-07-07",
+        "date_of_update": "2026-07-07",
+        "type": []
+    }
+},
+{
+    "model": "todo_app.todoitem",
+    "pk": 44,
+    "fields": {
+        "title": "кровать продам",
+        "description": "",
+        "status": 1,
+        "date_of_add": "2026-07-07",
+        "date_of_update": "2026-07-07",
+        "type": [
+            3
+        ]
+    }
+},
+{
+    "model": "todo_app.todoitem",
+    "pk": 45,
+    "fields": {
+        "title": "Совпадение",
+        "description": "Совпадение",
+        "status": 1,
+        "date_of_add": "2026-07-07",
+        "date_of_update": "2026-07-07",
+        "type": [
+            1,
+            3
+        ]
+    }
+},
+{
     "model": "todo_app.type",
     "pk": 1,
     "fields": {
-      "type_title": "Task"
+        "type_title": "Task"
     }
-  },
-  {
+},
+{
     "model": "todo_app.type",
     "pk": 2,
     "fields": {
-      "type_title": "Bug"
+        "type_title": "Bug"
     }
-  },
-  {
+},
+{
     "model": "todo_app.type",
     "pk": 3,
     "fields": {
-      "type_title": "Enhancement"
+        "type_title": "Enhancement"
     }
-  }
+},
+{
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$fXhSRml9uKKbY8TziTsvth$xg9YjMW161gaSd6DMO83UeLfL6MD4e254G1RVqMlI4Y=",
+        "last_login": "2026-07-04T10:33:46.374Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-07-04T10:33:20.544Z",
+        "groups": [],
+        "user_permissions": []
+    }
+}
 ]
