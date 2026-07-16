@@ -1,12 +1,51 @@
+from multiprocessing import context
+from urllib.parse import urlencode
+
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
-from django.views.generic import TemplateView, FormView
+from django.views.generic import TemplateView, FormView, ListView
 
-from todo_app.forms import TaskForm
-from todo_app.models import TodoItem
+from todo_app.forms import TaskForm, SearchForm
+from todo_app.models import TodoItem, Project
 
 
 # Create your views here.
+
+class ProjectListView(ListView):
+    template_name = 'tasks/projects_list.html'
+    model = Project
+    context_object_name = 'projects'
+    queryset = Project.objects.all()
+    paginate_by = 5
+
+    def dispatch(self, request, *args, **kwargs):
+        self.form = self.get_search_form()
+        self.search_value = self.get_search_value()
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['search_form'] = SearchForm()
+        if self.search_value:
+            context['query'] = urlencode({'search': self.search_value})
+        return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        if self.search_value:
+            queryset = queryset.filter(Q(project_title__icontains=self.search_value) | Q(project_description__icontains=self.search_value))
+        return queryset
+
+
+
+    def get_search_form(self):
+        return SearchForm(self.request.GET)
+
+    def get_search_value(self):
+        if self.form.is_valid():
+            return self.form.cleaned_data['search']
+
 
 class TaskListView(TemplateView):
     template_name = 'tasks/index.html'

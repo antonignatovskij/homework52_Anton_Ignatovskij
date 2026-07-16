@@ -1,64 +1,44 @@
 {% extends "base.html" %}
 
-{% block nav %}
-<a aria-current="page" class="nav-link" href="{% url 'create' %}">
-    Создать задачу
-</a>
-{% endblock %}
-
 {% block content %}
 <div class="container py-4">
     <div class="text-center mb-5">
-        <h1 class="fw-bold">Все задачи</h1>
+        <h1 class="fw-bold">Все Проекты</h1>
+        <div class="d-flex">
+            <form class="d-flex mx-auto" action="" method="GET">
+                {{ search_form }}
+                <button class="btn btn-sm btn-outline-success ms-1" type="submit"> Поиск </button>
+            </form>
+        </div>
+
     </div>
-    {% if tasks %}
+    {% if projects %}
     <div class="row g-4">
-        {% for task in tasks %}
+        {% for project in projects %}
         <div class="col-md-6 col-lg-4">
             <div class="card border-0 shadow-sm h-100 rounded-4">
                 <div class="card-body d-flex flex-column p-4">
                     <h3 class="h5 fw-semibold mb-4 text-center">
-                        {{ task.title }}
+                        {{ project.project_title }}
                     </h3>
-                    <div>
-                        {% for type in task.type.all %}
-                        <span class="text-success">{{ type }}</span>
-                        {% empty %}
-                        <span>Нет тегов</span>
-                        {% endfor %}
-                    </div>
-                    <div class="mb-3">
-                        <span class="fw-semibold">Статус:</span>
-                        {% if task.status.status_title == "New" %}
-                        <span class="badge bg-primary rounded-pill px-3 py-2">
-                                        {{ task.status.status_title }}
-                                    </span>
-                        {% elif task.status.status_title == "Done" %}
-                        <span class="badge bg-success rounded-pill px-3 py-2">
-                                        {{ task.status.status_title }}
-                                    </span>
-                        {% else %}
-                        <span class="badge bg-warning text-dark rounded-pill px-3 py-2">
-                                        {{ task.status.status_title }}
-                                    </span>
-                        {% endif %}
-                    </div>
+                    <h3 class="h5 fw-semibold mb-4 text-center">
+                        {{ project.project_description }}
+                    </h3>
                     <div class="text-muted">
                         <small>
                             <span class="fw-semibold">Дата создания:</span>
-                            {{ task.date_of_add }}
+                            {{ project.begining_date }}
                         </small>
                     </div>
                     <div class="text-muted mb-4 fs-6">
                         <small>
                             <span class="fw-semibold">Изменено:</span>
-                            {{ task.date_of_update }}
+                            {{ project.end_date }}
                         </small>
-
                     </div>
                     <div class="mt-auto d-flex gap-2 ">
-                        <a class="btn btn-outline-success btn-sm" href="{% url 'detail' task.pk %}">Подробнее</a>
-                        <a class="btn btn-success btn-sm" href="{% url 'update' task.pk %}">Редактировать</a>
+                        <a class="btn btn-outline-success btn-sm" href="#">Подробнее</a>
+                        <a class="btn btn-success btn-sm" href="#">Редактировать</a>
                     </div>
                 </div>
             </div>
@@ -67,8 +47,11 @@
     </div>
     {% else %}
     <div class="alert alert-success text-center rounded-4 shadow-sm">
-        Пока нет задач
+        Пока нет проектов
     </div>
     {% endif %}
+
 </div>
+{% include 'partial/pagination.html' %}
+
 {% endblock %}

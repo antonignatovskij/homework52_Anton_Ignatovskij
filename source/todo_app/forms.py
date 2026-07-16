@@ -32,3 +32,6 @@ class TaskForm(forms.ModelForm):
             if len(description) < 10:
                 raise forms.ValidationError("Заголовок описания должен быть не менее десяти символов")
         return description
+
+class SearchForm(forms.Form):
+    search = forms.CharField(max_length=100, required=False, label="Найти")
