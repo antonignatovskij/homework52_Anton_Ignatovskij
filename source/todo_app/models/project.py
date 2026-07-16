@@ -5,3 +5,10 @@ class Project(models.Model):
     end_date = models.DateField(null=True, blank=True)
     project_title = models.CharField(max_length=200, null=False, blank=False)
     project_description = models.TextField(max_length=500, null=False, blank=False)
+
+    def __str__(self):
+        return self.project_title
+
+    class Meta:
+        db_table = "Project"
+        verbose_name = "project"

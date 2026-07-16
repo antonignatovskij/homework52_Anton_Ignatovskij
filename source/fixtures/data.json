@@ -29,6 +29,7 @@
         "status": 3,
         "date_of_add": "2026-07-05",
         "date_of_update": "2026-07-07",
+        "project": 1,
         "type": [
             2
         ]
@@ -43,6 +44,7 @@
         "status": 1,
         "date_of_add": "2026-07-05",
         "date_of_update": "2026-07-05",
+        "project": 1,
         "type": [
             2,
             3
@@ -58,6 +60,7 @@
         "status": 3,
         "date_of_add": "2026-07-05",
         "date_of_update": "2026-07-05",
+        "project": 1,
         "type": [
             2
         ]
@@ -72,6 +75,7 @@
         "status": 1,
         "date_of_add": "2026-07-07",
         "date_of_update": "2026-07-07",
+        "project": 1,
         "type": [
             1,
             3
@@ -87,6 +91,7 @@
         "status": 2,
         "date_of_add": "2026-07-07",
         "date_of_update": "2026-07-07",
+        "project": 1,
         "type": [
             2
         ]
@@ -101,6 +106,7 @@
         "status": 1,
         "date_of_add": "2026-07-07",
         "date_of_update": "2026-07-07",
+        "project": 1,
         "type": [
             3
         ]
@@ -115,6 +121,7 @@
         "status": 3,
         "date_of_add": "2026-07-07",
         "date_of_update": "2026-07-07",
+        "project": 1,
         "type": [
             2
         ]
@@ -129,6 +136,7 @@
         "status": 3,
         "date_of_add": "2026-07-07",
         "date_of_update": "2026-07-07",
+        "project": 1,
         "type": [
             3
         ]
@@ -143,6 +151,7 @@
         "status": 2,
         "date_of_add": "2026-07-07",
         "date_of_update": "2026-07-07",
+        "project": 1,
         "type": [
             2,
             3
@@ -158,6 +167,7 @@
         "status": 3,
         "date_of_add": "2026-07-07",
         "date_of_update": "2026-07-07",
+        "project": 1,
         "type": []
     }
 },
@@ -170,6 +180,7 @@
         "status": 1,
         "date_of_add": "2026-07-07",
         "date_of_update": "2026-07-07",
+        "project": 1,
         "type": [
             1,
             2,
@@ -186,6 +197,7 @@
         "status": 2,
         "date_of_add": "2026-07-07",
         "date_of_update": "2026-07-07",
+        "project": 1,
         "type": [
             1
         ]
@@ -200,6 +212,7 @@
         "status": 2,
         "date_of_add": "2026-07-07",
         "date_of_update": "2026-07-07",
+        "project": 1,
         "type": [
             1,
             3
@@ -215,6 +228,7 @@
         "status": 3,
         "date_of_add": "2026-07-07",
         "date_of_update": "2026-07-07",
+        "project": 1,
         "type": []
     }
 },
@@ -227,6 +241,7 @@
         "status": 1,
         "date_of_add": "2026-07-07",
         "date_of_update": "2026-07-07",
+        "project": 1,
         "type": [
             3
         ]
@@ -241,6 +256,7 @@
         "status": 1,
         "date_of_add": "2026-07-07",
         "date_of_update": "2026-07-07",
+        "project": 1,
         "type": [
             1,
             3
@@ -266,6 +282,16 @@
     "pk": 3,
     "fields": {
         "type_title": "Enhancement"
+    }
+},
+{
+    "model": "todo_app.project",
+    "pk": 1,
+    "fields": {
+        "begining_date": "2026-07-16",
+        "end_date": "2026-07-16",
+        "project_title": "First project",
+        "project_description": "Test description 1"
     }
 },
 {
