@@ -1,5 +1,12 @@
 {% extends "base.html" %}
 
+{% block nav %}
+<a aria-current="page" class="nav-link" href="{% url 'project_create' %}">
+    Создать проект
+</a>
+{% endblock %}
+
+
 {% block content %}
 <div class="container py-4">
     <div class="text-center mb-5">

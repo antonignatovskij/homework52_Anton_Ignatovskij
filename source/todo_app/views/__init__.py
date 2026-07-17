@@ -5,4 +5,5 @@ from todo_app.views.tasks import TaskUpdateView
 from todo_app.views.tasks import TaskDeleteView
 from todo_app.views.tasks import ProjectListView
 from todo_app.views.tasks import ProjectDetailView
+from todo_app.views.tasks import ProjectCreateView
 

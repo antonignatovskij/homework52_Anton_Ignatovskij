@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import widgets
 
-from todo_app.models import TodoItem, Status
+from todo_app.models import TodoItem, Status, Project
 
 
 class TaskForm(forms.ModelForm):
@@ -35,3 +35,17 @@ class TaskForm(forms.ModelForm):
 
 class SearchForm(forms.Form):
     search = forms.CharField(max_length=100, required=False, label="Найти")
+
+class ProjectForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    class Meta:
+        model = Project
+        fields = ('project_title', 'project_description', 'begining_date', 'end_date')
+        widgets = {
+            'project_title': widgets.TextInput(attrs={'class': 'form-control'}),
+            'project_description': widgets.Textarea(attrs={'class': 'form-control', 'cols': '40', 'rows': '5'}),
+            'begining_date': widgets.DateInput(attrs={'class': 'form-control'}),
+            'end_date': widgets.DateInput(attrs={'class': 'form-control'})
+        }
