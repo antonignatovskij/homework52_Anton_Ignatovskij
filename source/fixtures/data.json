@@ -22,21 +22,6 @@
 },
 {
     "model": "todo_app.todoitem",
-    "pk": 20,
-    "fields": {
-        "title": "Баг",
-        "description": "в процессе решения, решение найдено",
-        "status": 3,
-        "date_of_add": "2026-07-05",
-        "date_of_update": "2026-07-07",
-        "project": 1,
-        "type": [
-            2
-        ]
-    }
-},
-{
-    "model": "todo_app.todoitem",
     "pk": 21,
     "fields": {
         "title": "Идея 12",
@@ -264,6 +249,208 @@
     }
 },
 {
+    "model": "todo_app.todoitem",
+    "pk": 47,
+    "fields": {
+        "title": "тест задача новая",
+        "description": "",
+        "status": 2,
+        "date_of_add": "2026-07-17",
+        "date_of_update": "2026-07-17",
+        "project": 8,
+        "type": [
+            1,
+            3
+        ]
+    }
+},
+{
+    "model": "todo_app.todoitem",
+    "pk": 53,
+    "fields": {
+        "title": "Тест12",
+        "description": "",
+        "status": 2,
+        "date_of_add": "2026-07-17",
+        "date_of_update": "2026-07-17",
+        "project": 8,
+        "type": [
+            1,
+            3
+        ]
+    }
+},
+{
+    "model": "todo_app.todoitem",
+    "pk": 54,
+    "fields": {
+        "title": "Баг срочно",
+        "description": "очень очень срочно",
+        "status": 2,
+        "date_of_add": "2026-07-17",
+        "date_of_update": "2026-07-17",
+        "project": 9,
+        "type": [
+            2,
+            3
+        ]
+    }
+},
+{
+    "model": "todo_app.todoitem",
+    "pk": 55,
+    "fields": {
+        "title": "серьезная задача",
+        "description": "",
+        "status": 2,
+        "date_of_add": "2026-07-17",
+        "date_of_update": "2026-07-17",
+        "project": 13,
+        "type": [
+            1
+        ]
+    }
+},
+{
+    "model": "todo_app.todoitem",
+    "pk": 56,
+    "fields": {
+        "title": "еще серьезнее",
+        "description": "задаааааача",
+        "status": 3,
+        "date_of_add": "2026-07-17",
+        "date_of_update": "2026-07-17",
+        "project": 13,
+        "type": [
+            2
+        ]
+    }
+},
+{
+    "model": "todo_app.todoitem",
+    "pk": 57,
+    "fields": {
+        "title": "Test",
+        "description": "TestTestTestTest",
+        "status": 2,
+        "date_of_add": "2026-07-17",
+        "date_of_update": "2026-07-17",
+        "project": 12,
+        "type": [
+            2,
+            3
+        ]
+    }
+},
+{
+    "model": "todo_app.todoitem",
+    "pk": 58,
+    "fields": {
+        "title": "Test",
+        "description": "",
+        "status": 1,
+        "date_of_add": "2026-07-17",
+        "date_of_update": "2026-07-17",
+        "project": 12,
+        "type": [
+            3
+        ]
+    }
+},
+{
+    "model": "todo_app.todoitem",
+    "pk": 59,
+    "fields": {
+        "title": "TestTestTestTestTestTest",
+        "description": "",
+        "status": 2,
+        "date_of_add": "2026-07-17",
+        "date_of_update": "2026-07-17",
+        "project": 12,
+        "type": [
+            1,
+            3
+        ]
+    }
+},
+{
+    "model": "todo_app.todoitem",
+    "pk": 60,
+    "fields": {
+        "title": "Testovaya",
+        "description": "TestovayaTestovaya",
+        "status": 2,
+        "date_of_add": "2026-07-17",
+        "date_of_update": "2026-07-17",
+        "project": 11,
+        "type": [
+            1,
+            3
+        ]
+    }
+},
+{
+    "model": "todo_app.todoitem",
+    "pk": 61,
+    "fields": {
+        "title": "Testovaya12",
+        "description": "",
+        "status": 2,
+        "date_of_add": "2026-07-17",
+        "date_of_update": "2026-07-17",
+        "project": 11,
+        "type": [
+            3
+        ]
+    }
+},
+{
+    "model": "todo_app.todoitem",
+    "pk": 62,
+    "fields": {
+        "title": "123 Testovaya",
+        "description": "",
+        "status": 1,
+        "date_of_add": "2026-07-17",
+        "date_of_update": "2026-07-17",
+        "project": 11,
+        "type": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "todo_app.todoitem",
+    "pk": 63,
+    "fields": {
+        "title": "тест задача",
+        "description": "14 444 12212",
+        "status": 2,
+        "date_of_add": "2026-07-17",
+        "date_of_update": "2026-07-17",
+        "project": 10,
+        "type": [
+            2
+        ]
+    }
+},
+{
+    "model": "todo_app.todoitem",
+    "pk": 64,
+    "fields": {
+        "title": "12тест задача",
+        "description": "рор лол днд",
+        "status": 3,
+        "date_of_add": "2026-07-17",
+        "date_of_update": "2026-07-17",
+        "project": 10,
+        "type": [
+            1
+        ]
+    }
+},
+{
     "model": "todo_app.type",
     "pk": 1,
     "fields": {
@@ -292,6 +479,66 @@
         "end_date": "2026-07-16",
         "project_title": "First project",
         "project_description": "Test description 1"
+    }
+},
+{
+    "model": "todo_app.project",
+    "pk": 8,
+    "fields": {
+        "begining_date": "2026-07-16",
+        "end_date": "2026-07-16",
+        "project_title": "Новый проект",
+        "project_description": "Новое описание"
+    }
+},
+{
+    "model": "todo_app.project",
+    "pk": 9,
+    "fields": {
+        "begining_date": "2026-07-16",
+        "end_date": "2026-09-16",
+        "project_title": "второй проект",
+        "project_description": "горят сроки"
+    }
+},
+{
+    "model": "todo_app.project",
+    "pk": 10,
+    "fields": {
+        "begining_date": "2026-08-11",
+        "end_date": null,
+        "project_title": "чил проект",
+        "project_description": "расслабление"
+    }
+},
+{
+    "model": "todo_app.project",
+    "pk": 11,
+    "fields": {
+        "begining_date": "2026-08-11",
+        "end_date": "2026-09-19",
+        "project_title": "серьезный",
+        "project_description": "проект"
+    }
+},
+{
+    "model": "todo_app.project",
+    "pk": 12,
+    "fields": {
+        "begining_date": "2026-07-12",
+        "end_date": null,
+        "project_title": "не очень",
+        "project_description": "так себе"
+    }
+},
+{
+    "model": "todo_app.project",
+    "pk": 13,
+    "fields": {
+        "begining_date": "2026-07-16",
+        "end_date": "2026-09-19",
+        "project_title": "second",
+        "project_description": "второй"
     }
 },
 {
