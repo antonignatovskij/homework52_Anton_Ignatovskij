@@ -11,8 +11,8 @@ class TodoItem(models.Model):
     type = models.ManyToManyField('todo_app.Type', related_name="tasks", blank=True, verbose_name="Типы")
     date_of_add = models.DateField(auto_now_add=True, verbose_name="Дата создания")
     date_of_update = models.DateField(auto_now=True, verbose_name="Последние изменения")
-    project = models.ForeignKey('todo_app.Project', related_name="project", on_delete=models.RESTRICT, null=False,
-                               blank=False, verbose_name="Статус", default=1)
+    project = models.ForeignKey('todo_app.Project', related_name="task", on_delete=models.RESTRICT, null=False,
+                               blank=False, verbose_name="Проект", default=1)
 
     def __str__(self):
         return self.title

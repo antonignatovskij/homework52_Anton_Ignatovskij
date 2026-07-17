@@ -4,7 +4,7 @@ from urllib.parse import urlencode
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
-from django.views.generic import TemplateView, FormView, ListView
+from django.views.generic import TemplateView, FormView, ListView, DetailView
 
 from todo_app.forms import TaskForm, SearchForm
 from todo_app.models import TodoItem, Project
@@ -46,14 +46,17 @@ class ProjectListView(ListView):
         if self.form.is_valid():
             return self.form.cleaned_data['search']
 
+class ProjectDetailView(DetailView):
+    template_name = 'tasks/project_detail.html'
+    model = Project
 
-class TaskListView(TemplateView):
+class TaskListView(ListView):
     template_name = 'tasks/index.html'
+    context_object_name = 'tasks'
 
-    def get_context_data(pk, *args, **kwargs):
-        kwargs['tasks'] = TodoItem.objects.all()
-
-        return super().get_context_data(**kwargs)
+    def get_queryset(self):
+        print(self.request.GET)
+        return TodoItem.objects.all()
 
 
 class TaskDetailView(TemplateView):
