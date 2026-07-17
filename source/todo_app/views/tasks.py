@@ -3,9 +3,9 @@ from urllib.parse import urlencode
 
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views import View
-from django.views.generic import TemplateView, FormView, ListView, DetailView, CreateView
+from django.views.generic import TemplateView, FormView, ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from todo_app.forms import TaskForm, SearchForm, ProjectForm
 from todo_app.models import TodoItem, Project
@@ -58,6 +58,24 @@ class ProjectCreateView(CreateView):
 
     def get_success_url(self):
         return reverse('project_detail', kwargs={'pk': self.object.pk})
+
+class ProjectUpdateView(UpdateView):
+    model = Project
+    template_name = 'tasks/project_update.html'
+    form_class = ProjectForm
+    context_object_name = 'project'
+
+    def get_success_url(self):
+        return reverse('project_detail', kwargs={'pk': self.object.pk})
+
+class ProjectDeleteView(DeleteView):
+    template_name = 'tasks/project_detail.html'
+    model = Project
+    context_object_name = 'project'
+    success_url = reverse_lazy('projects')
+
+
+
 
 class TaskListView(ListView):
     template_name = 'tasks/index.html'

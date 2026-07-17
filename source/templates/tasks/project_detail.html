@@ -30,9 +30,11 @@
             <hr class="my-3">
             <div class="d-flex">
                 <div class="mt-auto d-flex gap-2 ms-auto">
-                    <a class="btn btn-outline-success btn-sm" href="#">Подробнее</a>
-                    <a class="btn btn-success btn-sm" href="#">Редактировать</a>
-                    <a class="btn btn-danger btn-sm" href="#">Удалить</a>
+                    <a class="btn btn-outline-success btn-sm" href="/projects/">Назад</a>
+                    <a class="btn btn-success btn-sm" href="{% url 'project_update' project.pk %}">Редактировать</a>
+                    <button class="btn btn-danger btn-sm" data-bs-target="#ProjectDeleteModal" data-bs-toggle="modal" type="button">
+                        Удалить
+                    </button>
                 </div>
             </div>
 
@@ -100,5 +102,23 @@
         Пока нет задач
     </div>
     {% endif %}
+</div>
+<div aria-hidden="true" aria-labelledby="ProjectDeleteModalLabel" class="modal fade" id="ProjectDeleteModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="ProjectDeleteModalLabel">Удалить задачу</h1>
+                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <div class="modal-body">
+                <p>Вы точно хотите удалить задачу '{{ task.description }}'?</p>
+                <form action="{% url 'project_delete' project.pk %}" id="delete-project-form" method="post">{% csrf_token %}</form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-warning" data-bs-dismiss="modal" type="button">Отмена</button>
+                <button class="btn btn-danger" form="delete-project-form" type="submit">Удалить</button>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
