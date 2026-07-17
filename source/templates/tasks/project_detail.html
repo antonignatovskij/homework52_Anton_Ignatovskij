@@ -4,6 +4,9 @@
 <a aria-current="page" class="nav-link" href="{% url 'project_create' %}">
     Создать проект
 </a>
+<a aria-current="page" class="nav-link" href="{% url 'create' project.pk %}">
+    Создать задачу
+</a>
 {% endblock %}
 
 {% block content %}
@@ -30,7 +33,7 @@
             <hr class="my-3">
             <div class="d-flex">
                 <div class="mt-auto d-flex gap-2 ms-auto">
-                    <a class="btn btn-outline-success btn-sm" href="/projects/">Назад</a>
+                    <a class="btn btn-outline-success btn-sm" href="/">Назад</a>
                     <a class="btn btn-success btn-sm" href="{% url 'project_update' project.pk %}">Редактировать</a>
                     <button class="btn btn-danger btn-sm" data-bs-target="#ProjectDeleteModal" data-bs-toggle="modal" type="button">
                         Удалить

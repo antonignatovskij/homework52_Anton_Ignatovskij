@@ -1,8 +1,5 @@
 {% extends "base.html" %}
 
-{% block nav %}
-<a aria-current="page" class="nav-link" href="{% url 'create' %}">Добавить задачу</a>
-{% endblock %}
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-lg-8">
@@ -39,7 +36,7 @@
                     </div>
                 </div>
                 <div class="text-end mt-4">
-                    <a class="btn btn-success me-2" href="{% url 'task_list' %}"> назад</a>
+                    <a class="btn btn-success me-2" href="{% url 'projects' %}"> назад</a>
                     <button class="btn btn-warning" data-bs-target="#exampleModal" data-bs-toggle="modal" type="button">
                         Удалить
                     </button>

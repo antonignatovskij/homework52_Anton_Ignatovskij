@@ -94,12 +94,17 @@ class TaskDetailView(TemplateView):
         return super().get_context_data(**kwargs)
 
 
-class TaskCreateView(FormView):
+class TaskCreateView(CreateView):
+    model = TodoItem
     template_name = 'tasks/create_task.html'
     form_class = TaskForm
 
     def form_valid(self, form):
-        task = form.save()
+        project = get_object_or_404(Project, pk=self.kwargs.get('pk'))
+        task = form.save(commit=False)
+        task.project = project
+        task.save()
+        task.type.set(form.cleaned_data['type'])
         return redirect('detail', pk=task.pk)
 
 
