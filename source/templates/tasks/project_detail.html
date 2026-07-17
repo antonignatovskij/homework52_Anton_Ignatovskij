@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block nav %}
+<a aria-current="page" class="nav-link" href="{% url 'project_create' %}">
+    Создать проект
+</a>
+<a aria-current="page" class="nav-link" href="{% url 'create' project.pk %}">
+    Создать задачу
+</a>
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="card border-0 shadow-sm h-100 rounded-4 py-4 px-4 mb-4">
+        <div class="card-body p-0">
+            <h4 class="fw-semibold mb-2">
+                {{ project.project_title }}
+            </h4>
+            <p class="text-muted mb-4">
+                {{ project.project_description }}
+            </p>
+            <hr class="my-3">
+            <div class="d-flex justify-content-between small">
+                <div>
+                    <div class="text-secondary">Начало</div>
+                    <div class="fw-medium">{{ project.begining_date }}</div>
+                </div>
+                <div class="text-end">
+                    <div class="text-secondary">Окончание</div>
+                    <div class="fw-medium">{{ project.end_date }}</div>
+                </div>
+            </div>
+            <hr class="my-3">
+            <div class="d-flex">
+                <div class="mt-auto d-flex gap-2 ms-auto">
+                    <a class="btn btn-outline-success btn-sm" href="/">Назад</a>
+                    <a class="btn btn-success btn-sm" href="{% url 'project_update' project.pk %}">Редактировать</a>
+                    <button class="btn btn-danger btn-sm" data-bs-target="#ProjectDeleteModal" data-bs-toggle="modal" type="button">
+                        Удалить
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    {% if project.task %}
+        <div class="text-center mb-5">
+            <h1 class="fw-bold">Задачи</h1>
+        </div>
+        <div class="row g-4">
+            {% for task in project.task.all %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card border-0 shadow-sm h-100 rounded-4">
+                    <div class="card-body d-flex flex-column p-4">
+                        <h3 class="h5 fw-semibold mb-4 text-center">
+                            {{ task.title }}
+                        </h3>
+                        <div>
+                            {% for type in task.type.all %}
+                            <span class="text-success">{{ type }}</span>
+                            {% empty %}
+                            <span>Нет тегов</span>
+                            {% endfor %}
+                        </div>
+                        <div class="mb-3">
+                            <span class="fw-semibold">Статус:</span>
+                            {% if task.status.status_title == "New" %}
+                            <span class="badge bg-primary rounded-pill px-3 py-2">
+                                            {{ task.status.status_title }}
+                                        </span>
+                            {% elif task.status.status_title == "Done" %}
+                            <span class="badge bg-success rounded-pill px-3 py-2">
+                                            {{ task.status.status_title }}
+                                        </span>
+                            {% else %}
+                            <span class="badge bg-warning text-dark rounded-pill px-3 py-2">
+                                            {{ task.status.status_title }}
+                                        </span>
+                            {% endif %}
+                        </div>
+                        <div class="text-muted">
+                            <small>
+                                <span class="fw-semibold">Дата создания:</span>
+                                {{ task.date_of_add }}
+                            </small>
+                        </div>
+                        <div class="text-muted mb-4 fs-6">
+                            <small>
+                                <span class="fw-semibold">Изменено:</span>
+                                {{ task.date_of_update }}
+                            </small>
+
+                        </div>
+                        <div class="mt-auto d-flex gap-2 ">
+                            <a class="btn btn-outline-success btn-sm" href="{% url 'detail' task.pk %}">Подробнее</a>
+                            <a class="btn btn-success btn-sm" href="{% url 'update' task.pk %}">Редактировать</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+    <div class="alert alert-success text-center rounded-4 shadow-sm">
+        Пока нет задач
+    </div>
+    {% endif %}
+</div>
+<div aria-hidden="true" aria-labelledby="ProjectDeleteModalLabel" class="modal fade" id="ProjectDeleteModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="ProjectDeleteModalLabel">Удалить задачу</h1>
+                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <div class="modal-body">
+                <p>Вы точно хотите удалить задачу '{{ task.description }}'?</p>
+                <form action="{% url 'project_delete' project.pk %}" id="delete-project-form" method="post">{% csrf_token %}</form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-warning" data-bs-dismiss="modal" type="button">Отмена</button>
+                <button class="btn btn-danger" form="delete-project-form" type="submit">Удалить</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
