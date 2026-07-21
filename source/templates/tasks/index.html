@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block nav %}
-<a aria-current="page" class="nav-link" href="{% url 'project_create' %}">
+<a aria-current="page" class="nav-link" href="{% url 'tasks:project_create' %}">
     Создать проект
 </a>
 {% endblock %}
@@ -57,8 +57,8 @@
 
                     </div>
                     <div class="mt-auto d-flex gap-2 ">
-                        <a class="btn btn-outline-success btn-sm" href="{% url 'detail' task.pk %}">Подробнее</a>
-                        <a class="btn btn-success btn-sm" href="{% url 'update' task.pk %}">Редактировать</a>
+                        <a class="btn btn-outline-success btn-sm" href="{% url 'tasks:detail' task.pk %}">Подробнее</a>
+                        <a class="btn btn-success btn-sm" href="{% url 'tasks:update' task.pk %}">Редактировать</a>
                     </div>
                 </div>
             </div>
