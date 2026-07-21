@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
 {% block nav %}
-<a aria-current="page" class="nav-link" href="{% url 'project_create' %}">
+<a aria-current="page" class="nav-link" href="{% url 'tasks:project_create' %}">
     Создать проект
 </a>
-<a aria-current="page" class="nav-link" href="{% url 'create' project.pk %}">
+<a aria-current="page" class="nav-link" href="{% url 'tasks:create' project.pk %}">
     Создать задачу
 </a>
 {% endblock %}
@@ -34,7 +34,7 @@
             <div class="d-flex">
                 <div class="mt-auto d-flex gap-2 ms-auto">
                     <a class="btn btn-outline-success btn-sm" href="/">Назад</a>
-                    <a class="btn btn-success btn-sm" href="{% url 'project_update' project.pk %}">Редактировать</a>
+                    <a class="btn btn-success btn-sm" href="{% url 'tasks:project_update' project.pk %}">Редактировать</a>
                     <button class="btn btn-danger btn-sm" data-bs-target="#ProjectDeleteModal" data-bs-toggle="modal" type="button">
                         Удалить
                     </button>
@@ -92,8 +92,8 @@
 
                         </div>
                         <div class="mt-auto d-flex gap-2 ">
-                            <a class="btn btn-outline-success btn-sm" href="{% url 'detail' task.pk %}">Подробнее</a>
-                            <a class="btn btn-success btn-sm" href="{% url 'update' task.pk %}">Редактировать</a>
+                            <a class="btn btn-outline-success btn-sm" href="{% url 'tasks:detail' task.pk %}">Подробнее</a>
+                            <a class="btn btn-success btn-sm" href="{% url 'tasks:update' task.pk %}">Редактировать</a>
                         </div>
                     </div>
                 </div>
@@ -115,7 +115,7 @@
             </div>
             <div class="modal-body">
                 <p>Вы точно хотите удалить задачу '{{ task.description }}'?</p>
-                <form action="{% url 'project_delete' project.pk %}" id="delete-project-form" method="post">{% csrf_token %}</form>
+                <form action="{% url 'tasks:project_delete' project.pk %}" id="delete-project-form" method="post">{% csrf_token %}</form>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-warning" data-bs-dismiss="modal" type="button">Отмена</button>

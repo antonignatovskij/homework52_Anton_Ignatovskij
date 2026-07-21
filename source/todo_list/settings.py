@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'todo_app',
+    'accounts',
 
     'django_bootstrap5',
 ]
