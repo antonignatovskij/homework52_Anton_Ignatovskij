@@ -1,21 +1,10 @@
 from django.urls import path
 
-from todo_app.views import (
-    TaskListView,
-    TaskDetailView,
-    TaskCreateView,
-    TaskUpdateView,
-    TaskDeleteView,
-    ProjectListView,
-    ProjectDetailView,
-    ProjectCreateView,
-    ProjectUpdateView,
-    ProjectDeleteView
-)
+from accounts.views import login_view, logout_view
 
 app_name = 'accounts'
 
 urlpatterns = [
-    # path('tasks/', TaskListView.as_view(), name='task_list'),
-
+    path('login/', login_view, name='login'),
+    path('logout/', logout_view, name='logout'),
 ]
