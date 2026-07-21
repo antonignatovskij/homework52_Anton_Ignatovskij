@@ -15,7 +15,7 @@ from todo_app.models import TodoItem, Project
 
 # Create your views here.
 
-class ProjectListView(LoginRequiredMixin, ListView):
+class ProjectListView(ListView):
     template_name = 'tasks/projects_list.html'
     model = Project
     context_object_name = 'projects'
@@ -49,7 +49,7 @@ class ProjectListView(LoginRequiredMixin, ListView):
             return self.form.cleaned_data['search']
 
 
-class ProjectDetailView(LoginRequiredMixin,DetailView):
+class ProjectDetailView(DetailView):
     template_name = 'tasks/project_detail.html'
     model = Project
 
@@ -85,7 +85,7 @@ class ProjectDeleteView(LoginRequiredMixin,DeleteView):
 # ////вьюшки для тасков ниже
 
 
-class TaskListView(LoginRequiredMixin,ListView):
+class TaskListView(ListView):
     template_name = 'tasks/index.html'
     context_object_name = 'tasks'
 
@@ -95,7 +95,7 @@ class TaskListView(LoginRequiredMixin,ListView):
 
 
 
-class TaskDetailView(LoginRequiredMixin,DetailView):
+class TaskDetailView(DetailView):
     template_name = 'tasks/task_detail.html'
     model = TodoItem
     context_object_name = 'task'
