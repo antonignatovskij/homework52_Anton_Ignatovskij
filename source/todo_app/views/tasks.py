@@ -2,9 +2,11 @@ from urllib.parse import urlencode
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+
 
 from todo_app.forms import TaskForm, SearchForm, ProjectForm, MembersForm
 from todo_app.models import TodoItem, Project
@@ -56,11 +58,15 @@ class ProjectDetailView(DetailView):
 
 class ProjectCreateView(LoginRequiredMixin, CreateView):
     template_name = 'tasks/project_create.html'
-    model = Project
     form_class = ProjectForm
 
     def get_success_url(self):
         return reverse('tasks:project_detail', kwargs={'pk': self.object.pk})
+
+    def form_valid(self, form):
+        self.object = form.save()
+        self.object.members.add(self.request.user)
+        return super().form_valid(form)
 
 
 class ProjectUpdateView(LoginRequiredMixin,UpdateView):

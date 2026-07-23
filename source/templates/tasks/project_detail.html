@@ -131,8 +131,8 @@
             </div>
             <div class="modal-body">
                 <p>Вы точно хотите удалить задачу '{{ task.description }}'?</p>
-                <form action="{% url 'tasks:project_delete' project.pk %}" id="delete-project-form" method="post">{%
-                    csrf_token %}
+                <form action="{% url 'tasks:project_delete' project.pk %}" id="delete-project-form" method="post">
+                    {% csrf_token %}
                 </form>
             </div>
             <div class="modal-footer">
