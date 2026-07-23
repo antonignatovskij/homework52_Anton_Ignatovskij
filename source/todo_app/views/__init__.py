@@ -8,3 +8,4 @@ from todo_app.views.tasks import ProjectDetailView
 from todo_app.views.tasks import ProjectCreateView
 from todo_app.views.tasks import ProjectUpdateView
 from todo_app.views.tasks import ProjectDeleteView
+from todo_app.views.tasks import MembersUpdateView

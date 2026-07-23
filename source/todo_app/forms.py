@@ -49,3 +49,14 @@ class ProjectForm(forms.ModelForm):
             'begining_date': widgets.DateInput(attrs={'class': 'form-control'}),
             'end_date': widgets.DateInput(attrs={'class': 'form-control'})
         }
+
+class MembersForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    class Meta:
+        model = Project
+        fields = ('members',)
+        widgets = {
+            'members': widgets.CheckboxSelectMultiple()
+        }

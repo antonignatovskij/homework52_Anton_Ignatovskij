@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-from todo_app.forms import TaskForm, SearchForm, ProjectForm
+from todo_app.forms import TaskForm, SearchForm, ProjectForm, MembersForm
 from todo_app.models import TodoItem, Project
 
 
@@ -79,6 +79,16 @@ class ProjectDeleteView(LoginRequiredMixin,DeleteView):
     model = Project
     context_object_name = 'project'
     success_url = reverse_lazy('tasks:projects')
+
+class MembersUpdateView(LoginRequiredMixin, UpdateView):
+    model = Project
+    form_class = MembersForm
+    template_name = 'tasks/members_create.html'
+    context_object_name = 'project'
+
+    def get_success_url(self):
+        return reverse('tasks:project_detail', kwargs={'pk': self.object.pk})
+
 
 
 

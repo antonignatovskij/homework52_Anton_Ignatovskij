@@ -29,13 +29,28 @@
                     <div class="text-secondary">Окончание</div>
                     <div class="fw-medium">{{ project.end_date }}</div>
                 </div>
+
             </div>
+            <hr class="my-3">
+                <div class="text-success fw-bold">Участники</div>
+                <div class="fw-medium">
+                    {% for member in project.members.all %}
+                        <span class="me-2">{{ member }}</span>
+                    {% empty %}
+                        <span>Нет участников</span>
+                    {% endfor %}
+                    </span>
+                </div>
             <hr class="my-3">
             <div class="d-flex">
                 <div class="mt-auto d-flex gap-2 ms-auto">
                     <a class="btn btn-outline-success btn-sm" href="/">Назад</a>
-                    <a class="btn btn-success btn-sm" href="{% url 'tasks:project_update' project.pk %}">Редактировать</a>
-                    <button class="btn btn-danger btn-sm" data-bs-target="#ProjectDeleteModal" data-bs-toggle="modal" type="button">
+                    <a class="btn btn-success btn-sm"
+                       href="{% url 'tasks:project_update' project.pk %}">Редактировать</a>
+                    <a class="btn btn-warning btn-sm" href="{% url 'tasks:members' project.pk %}">добавить
+                        участников</a>
+                    <button class="btn btn-danger btn-sm" data-bs-target="#ProjectDeleteModal" data-bs-toggle="modal"
+                            type="button">
                         Удалить
                     </button>
                 </div>
@@ -44,69 +59,70 @@
         </div>
     </div>
     {% if project.task %}
-        <div class="text-center mb-5">
-            <h1 class="fw-bold">Задачи</h1>
-        </div>
-        <div class="row g-4">
-            {% for task in project.task.all %}
-            <div class="col-md-6 col-lg-4">
-                <div class="card border-0 shadow-sm h-100 rounded-4">
-                    <div class="card-body d-flex flex-column p-4">
-                        <h3 class="h5 fw-semibold mb-4 text-center">
-                            {{ task.title }}
-                        </h3>
-                        <div>
-                            {% for type in task.type.all %}
-                            <span class="text-success">{{ type }}</span>
-                            {% empty %}
-                            <span>Нет тегов</span>
-                            {% endfor %}
-                        </div>
-                        <div class="mb-3">
-                            <span class="fw-semibold">Статус:</span>
-                            {% if task.status.status_title == "New" %}
-                            <span class="badge bg-primary rounded-pill px-3 py-2">
+    <div class="text-center mb-5">
+        <h1 class="fw-bold">Задачи</h1>
+    </div>
+    <div class="row g-4">
+        {% for task in project.task.all %}
+        <div class="col-md-6 col-lg-4">
+            <div class="card border-0 shadow-sm h-100 rounded-4">
+                <div class="card-body d-flex flex-column p-4">
+                    <h3 class="h5 fw-semibold mb-4 text-center">
+                        {{ task.title }}
+                    </h3>
+                    <div>
+                        {% for type in task.type.all %}
+                        <span class="text-success">{{ type }}</span>
+                        {% empty %}
+                        <span>Нет тегов</span>
+                        {% endfor %}
+                    </div>
+                    <div class="mb-3">
+                        <span class="fw-semibold">Статус:</span>
+                        {% if task.status.status_title == "New" %}
+                        <span class="badge bg-primary rounded-pill px-3 py-2">
                                             {{ task.status.status_title }}
                                         </span>
-                            {% elif task.status.status_title == "Done" %}
-                            <span class="badge bg-success rounded-pill px-3 py-2">
+                        {% elif task.status.status_title == "Done" %}
+                        <span class="badge bg-success rounded-pill px-3 py-2">
                                             {{ task.status.status_title }}
                                         </span>
-                            {% else %}
-                            <span class="badge bg-warning text-dark rounded-pill px-3 py-2">
+                        {% else %}
+                        <span class="badge bg-warning text-dark rounded-pill px-3 py-2">
                                             {{ task.status.status_title }}
                                         </span>
-                            {% endif %}
-                        </div>
-                        <div class="text-muted">
-                            <small>
-                                <span class="fw-semibold">Дата создания:</span>
-                                {{ task.date_of_add }}
-                            </small>
-                        </div>
-                        <div class="text-muted mb-4 fs-6">
-                            <small>
-                                <span class="fw-semibold">Изменено:</span>
-                                {{ task.date_of_update }}
-                            </small>
+                        {% endif %}
+                    </div>
+                    <div class="text-muted">
+                        <small>
+                            <span class="fw-semibold">Дата создания:</span>
+                            {{ task.date_of_add }}
+                        </small>
+                    </div>
+                    <div class="text-muted mb-4 fs-6">
+                        <small>
+                            <span class="fw-semibold">Изменено:</span>
+                            {{ task.date_of_update }}
+                        </small>
 
-                        </div>
-                        <div class="mt-auto d-flex gap-2 ">
-                            <a class="btn btn-outline-success btn-sm" href="{% url 'tasks:detail' task.pk %}">Подробнее</a>
-                            <a class="btn btn-success btn-sm" href="{% url 'tasks:update' task.pk %}">Редактировать</a>
-                        </div>
+                    </div>
+                    <div class="mt-auto d-flex gap-2 ">
+                        <a class="btn btn-outline-success btn-sm" href="{% url 'tasks:detail' task.pk %}">Подробнее</a>
+                        <a class="btn btn-success btn-sm" href="{% url 'tasks:update' task.pk %}">Редактировать</a>
                     </div>
                 </div>
             </div>
-            {% endfor %}
         </div>
+        {% endfor %}
+    </div>
     {% else %}
     <div class="alert alert-success text-center rounded-4 shadow-sm">
         Пока нет задач
     </div>
     {% endif %}
 </div>
-<div aria-hidden="true" aria-labelledby="ProjectDeleteModalLabel" class="modal fade" id="ProjectDeleteModal" tabindex="-1">
+<div aria-hidden="true" aria-labelledby="ProjectDeleteModalLabel" class="modal fade" id="ProjectDeleteModal"
+     tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -115,7 +131,9 @@
             </div>
             <div class="modal-body">
                 <p>Вы точно хотите удалить задачу '{{ task.description }}'?</p>
-                <form action="{% url 'tasks:project_delete' project.pk %}" id="delete-project-form" method="post">{% csrf_token %}</form>
+                <form action="{% url 'tasks:project_delete' project.pk %}" id="delete-project-form" method="post">{%
+                    csrf_token %}
+                </form>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-warning" data-bs-dismiss="modal" type="button">Отмена</button>
