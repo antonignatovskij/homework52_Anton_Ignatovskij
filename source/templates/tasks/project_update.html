@@ -2,27 +2,7 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-md-6">
-
-        <div class="card shadow">
-            <div class="card-header bg-success text-white">
-                <h3 class="mb-0">Изменить проект</h3>
-            </div>
-
-            <div class="card-body p-4">
-                {% include "partial/task_form.html" %}
-            </div>
-            <div class="card-footer text-center">
-                <a class="btn btn-outline-success" href="/">
-                    Назад
-                </a>
-                <button class="btn btn-warning" form="task-form" type="submit">
-                    Сохранить
-                </button>
-            </div>
-        </div>
-
-    </div>
+<div class="card-body p-4">
+    {% include "partial/task_form.html" with form_title="редактировать проект" btn_txt="Сохранить" %}
 </div>
 {% endblock %}
