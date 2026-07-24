@@ -29,6 +29,7 @@
                     <a class="nav-link" href="{% url 'accounts:login' %}?next={{ request.get_full_path }}">Войти</a>
                 {% endif %}
                 <a class="nav-link" href="{% url 'accounts:create' %}?next={{ request.get_full_path }}">Зарегистрироваться</a>
+                <span>{{ user.username }}</span>
             </div>
         </div>
     </div>

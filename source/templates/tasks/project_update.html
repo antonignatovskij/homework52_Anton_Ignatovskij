@@ -1,6 +1,24 @@
 {% extends "base.html" %}
 {% load django_bootstrap5 %}
 
+{% block nav %}
+
+
+{% if perms.todo_app.change_project %}
+<a aria-current="page" class="nav-link" href="{% url 'tasks:project_create' %}">
+    Создать проект
+</a>
+{% endif %}
+
+{% if perms.todo_app.create_todoitem %}
+<a aria-current="page" class="nav-link" href="{% url 'tasks:create' project.pk %}">
+    Создать задачу
+</a>
+{% endif %}
+
+
+{% endblock %}
+
 {% block content %}
 <div class="card-body p-4">
     {% include "partial/task_form.html" with form_title="редактировать проект" btn_txt="Сохранить" %}

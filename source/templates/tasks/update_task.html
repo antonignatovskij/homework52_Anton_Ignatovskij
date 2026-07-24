@@ -2,9 +2,12 @@
 {% load django_bootstrap5 %}
 
 {% block nav %}
+{% if perms.todo_app.change_project %}
 <a aria-current="page" class="nav-link" href="{% url 'tasks:project_create' %}">
     Создать проект
 </a>
+{% endif %}
+
 {% endblock %}
 
 {% block content %}

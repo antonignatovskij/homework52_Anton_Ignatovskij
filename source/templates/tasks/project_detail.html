@@ -1,12 +1,21 @@
 {% extends "base.html" %}
 
 {% block nav %}
+
+
+{% if perms.todo_app.change_project %}
 <a aria-current="page" class="nav-link" href="{% url 'tasks:project_create' %}">
     Создать проект
 </a>
+{% endif %}
+
+{% if perms.todo_app.create_todoitem %}
 <a aria-current="page" class="nav-link" href="{% url 'tasks:create' project.pk %}">
     Создать задачу
 </a>
+{% endif %}
+
+
 {% endblock %}
 
 {% block content %}
@@ -32,27 +41,43 @@
 
             </div>
             <hr class="my-3">
-                <div class="text-success fw-bold">Участники</div>
-                <div class="fw-medium">
-                    {% for member in project.members.all %}
-                        <span class="me-2">{{ member }}</span>
-                    {% empty %}
-                        <span>Нет участников</span>
-                    {% endfor %}
-                    </span>
-                </div>
+            <div class="text-success fw-bold">Участники</div>
+            <div class="fw-medium">
+                {% for member in project.members.all %}
+                <span class="me-2">{{ member }}</span>
+                {% empty %}
+                <span>Нет участников</span>
+                {% endfor %}
+                </span>
+            </div>
             <hr class="my-3">
             <div class="d-flex">
                 <div class="mt-auto d-flex gap-2 ms-auto">
                     <a class="btn btn-outline-success btn-sm" href="/">Назад</a>
+
+                    {% if perms.todo_app.change_project %}
                     <a class="btn btn-success btn-sm"
-                       href="{% url 'tasks:project_update' project.pk %}">Редактировать</a>
-                    <a class="btn btn-warning btn-sm" href="{% url 'tasks:members' project.pk %}">добавить
-                        участников</a>
-                    <button class="btn btn-danger btn-sm" data-bs-target="#ProjectDeleteModal" data-bs-toggle="modal"
+                       href="{% url 'tasks:project_update' project.pk %}">
+                        Редактировать
+                    </a>
+                    <a class="btn btn-warning btn-sm"
+                       href="{% url 'tasks:members' project.pk %}">
+                        Добавить участников
+                    </a>
+                    <button class="btn btn-danger btn-sm"
+                            data-bs-target="#ProjectDeleteModal"
+                            data-bs-toggle="modal"
                             type="button">
                         Удалить
                     </button>
+                    {% endif %}
+
+                    {% if is_captain %}
+                    <a class="btn btn-warning btn-sm"
+                       href="{% url 'tasks:members' project.pk %}">
+                        Добавить участников
+                    </a>
+                    {% endif %}
                 </div>
             </div>
 
@@ -108,7 +133,9 @@
                     </div>
                     <div class="mt-auto d-flex gap-2 ">
                         <a class="btn btn-outline-success btn-sm" href="{% url 'tasks:detail' task.pk %}">Подробнее</a>
+                        {% if perms.todo_app.change_todoitem %}
                         <a class="btn btn-success btn-sm" href="{% url 'tasks:update' task.pk %}">Редактировать</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>

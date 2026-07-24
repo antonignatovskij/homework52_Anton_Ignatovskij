@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 
 {% block nav %}
+{% if perms.todo_app.change_project %}
 <a aria-current="page" class="nav-link" href="{% url 'tasks:project_create' %}">
     Создать проект
 </a>
+{% endif %}
 {% endblock %}
 
 {% block content %}
@@ -42,10 +44,14 @@
                     </div>
                 </div>
                 <div class="text-end mt-4">
-                    <a class="btn btn-success me-2" href="{% url 'tasks:projects' %}"> назад</a>
-                    <button class="btn btn-warning" data-bs-target="#exampleModal" data-bs-toggle="modal" type="button">
+                    <a class="btn btn-outline-success me-2" href="{% url 'tasks:projects' %}"> назад</a>
+                    {% if perms.todo_app.change_todoitem %}
+                        <a class="btn btn-success" href="{% url 'tasks:update' task.pk %}">Редактировать</a>
+                        <button class="btn btn-warning" data-bs-target="#exampleModal" data-bs-toggle="modal" type="button">
                         Удалить
                     </button>
+                    {% endif %}
+
                 </div>
             </div>
         </div>
