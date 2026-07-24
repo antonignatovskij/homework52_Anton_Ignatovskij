@@ -10,7 +10,8 @@ from todo_app.views import (
     ProjectDetailView,
     ProjectCreateView,
     ProjectUpdateView,
-    ProjectDeleteView
+    ProjectDeleteView,
+    MembersUpdateView,
 )
 
 app_name = 'tasks'
@@ -27,4 +28,5 @@ urlpatterns = [
     path('projects/<int:pk>/', ProjectDetailView.as_view(), name='project_detail'),
     path('projects/<int:pk>/update/', ProjectUpdateView.as_view(), name='project_update'),
     path('projects/<int:pk>/delete/', ProjectDeleteView.as_view(), name='project_delete'),
+    path('projects/<int:pk>/members/', MembersUpdateView.as_view(), name='members'),
 ]

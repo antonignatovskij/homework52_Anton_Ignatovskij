@@ -1,17 +1,44 @@
-<form action="" id="task-form" method="POST">
+{% load django_bootstrap5 %}
 
-    {% csrf_token %}
+<!--<form action="" id="task-form" method="POST">-->
 
-    {% for error in form.non_field_errors %}
-        <p class="form-error">{{ error }}</p>
-    {% endfor %}
+<!--    {% csrf_token %}-->
 
-    {% for field in form %}
-        <p><label for="{{ field.id_for_label }}">{{ field.label }}</label></p>
-    {% for error in field.errors %}
-        <p class="form-error text-danger">{{ error }}</p>
-    {% endfor %}
-        <p>{{ field }}</p>
-    {% endfor %}
+<!--    {% for error in form.non_field_errors %}-->
+<!--    <p class="form-error">{{ error }}</p>-->
+<!--    {% endfor %}-->
 
-</form>
+<!--    {% for field in form %}-->
+<!--    <p><label for="{{ field.id_for_label }}">{{ field.label }}</label></p>-->
+<!--    {% for error in field.errors %}-->
+<!--    <p class="form-error text-danger">{{ error }}</p>-->
+<!--    {% endfor %}-->
+<!--    <p>{{ field }}</p>-->
+<!--    {% endfor %}-->
+
+<!--    &lt;!&ndash;</form>&ndash;&gt;-->
+
+    {% block content %}
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow {{ extra_classes }}">
+                <div class="card-header bg-success text-white">
+                    <h3 class="mb-0">{{ form_title }}</h3>
+                </div>
+
+                <div class="card-body p-4">
+                    <form action="" id="task-form" method="POST">
+                        {% csrf_token %}
+                        {% bootstrap_form form layout="floating" %}
+                    </form>
+                </div>
+                <div class="card-footer text-center">
+                    <button class="btn btn-warning" form="task-form" type="submit">
+                        {{ btn_txt }}
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    {% endblock %}

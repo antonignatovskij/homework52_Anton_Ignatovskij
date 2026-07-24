@@ -2,33 +2,17 @@
 {% load django_bootstrap5 %}
 
 {% block nav %}
+{% if perms.todo_app.change_project %}
 <a aria-current="page" class="nav-link" href="{% url 'tasks:project_create' %}">
     Создать проект
 </a>
+{% endif %}
 {% endblock %}
 
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-md-6">
 
-        <div class="card shadow">
-            <div class="card-header bg-success text-white">
-                <h3 class="mb-0">Добавить задачу</h3>
-            </div>
-
-            <div class="card-body p-4">
-                {% include "partial/task_form.html" %}
-            </div>
-            <div class="card-footer text-center">
-                <a class="btn btn-outline-success" href="/">
-                    Назад
-                </a>
-                <button class="btn btn-warning" form="task-form" type="submit">
-                    Сохранить
-                </button>
-            </div>
-        </div>
-
+    <div class="card-body p-4">
+        {% include "partial/task_form.html" with form_title="Добавить задачу" btn_txt="Сохранить" %}
     </div>
-</div>
+
 {% endblock %}

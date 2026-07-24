@@ -5,6 +5,7 @@ class Project(models.Model):
     end_date = models.DateField(null=True, blank=True)
     project_title = models.CharField(max_length=200, null=False, blank=False)
     project_description = models.TextField(max_length=500, null=False, blank=False)
+    members = models.ManyToManyField('auth.User', related_name="Project", blank=False, verbose_name="Участники")
 
     def __str__(self):
         return self.project_title

@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load django_bootstrap5 %}
 
 {% block nav %}
 {% if perms.todo_app.change_project %}
@@ -7,11 +6,11 @@
     Создать проект
 </a>
 {% endif %}
-
 {% endblock %}
 
 {% block content %}
+
 <div class="card-body p-4">
-    {% include "partial/task_form.html" with form_title="Редактировать задачу" btn_txt="Сохранить" %}
+    {% include "partial/task_form.html" with form_title="Добавить участников" btn_txt="Сохранить" %}
 </div>
 {% endblock %}
